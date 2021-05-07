@@ -56,19 +56,7 @@ export default function Wishlist({ Add_to_cart_button }) {
                   {(item.price - (item.price * item.offer) / 100).toFixed(2)}
                 </div>
 
-                {Add_to_cart_button(
-                  item._id,
-                  item.name,
-                  item.image,
-                  item.price,
-                  item.productName,
-                  item.inStock,
-                  item.level,
-                  item.fastDelivery,
-                  item.isnew,
-                  item.ratings,
-                  item.offer
-                )}
+                {Add_to_cart_button(item._id, item.inStock)}
                 <button
                   class="cancel"
                   onClick={() => {

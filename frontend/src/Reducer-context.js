@@ -198,7 +198,3 @@ function reducer(state, action) {
       return console.log("error");
   }
 }
-
-async function deleting(url, payload) {
-  return await axios.delete(url, payload);
-}

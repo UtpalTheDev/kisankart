@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import kisankartlogo from "./assets/kisankartlogo.png";
 import "./styles.css";
 import { useReduce } from "./Reducer-context";
 import { Route, Routes, Link } from "react-router-dom";
@@ -145,19 +146,7 @@ export default function App() {
       console.log("err", err);
     }
   }
-  function Add_to_cart_button(
-    id,
-    name,
-    image,
-    price,
-    productName,
-    inStock,
-    level,
-    fastDelivery,
-    isnew,
-    ratings,
-    offer
-  ) {
+  function Add_to_cart_button(id, inStock) {
     return cartlist.reduce(
       (returnobj, item) => {
         if (item.itemId === id && item.qty !== 0) {
@@ -286,11 +275,8 @@ export default function App() {
       <div className="ecom-navbar">
         <Link to="/">
           <div className="logo">
-            <img
-              src="http://www.pngmart.com/files/7/Growing-Plant-PNG-Pic.png"
-              alt="logo"
-            />
-            KisanKart
+            <img src={kisankartlogo} alt="logo" />
+            <span>KisanKart</span>
           </div>
         </Link>
         <div class="navbar">
@@ -445,7 +431,12 @@ export default function App() {
         />
         <Route
           path="/cart"
-          element={<Cart Add_to_wishlist_button={Add_to_wishlist_button} />}
+          element={
+            <Cart
+              Add_to_wishlist_button={Add_to_wishlist_button}
+              Add_to_cart_button={Add_to_cart_button}
+            />
+          }
         />
         <Route
           path="/wishlist"

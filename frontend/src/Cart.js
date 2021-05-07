@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useReduce } from "./Reducer-context";
 
-export default function Cart({ Add_to_wishlist_button, add }) {
+export default function Cart({
+  Add_to_wishlist_button,
+  Add_to_cart_button,
+  add
+}) {
   let { cartlist, data, dispatch } = useReduce();
   // console.log("add to", Add_to_wishlist_button);
   // console.log("cartdata", cartlist);
@@ -90,41 +94,7 @@ export default function Cart({ Add_to_wishlist_button, add }) {
                     {(item.price - (item.price * item.offer) / 100).toFixed(2)}
                   </div>
 
-                  <div className="added_to_cart">
-                    <button
-                      onClick={() => {
-                        if (item.qty === 1) {
-                          cart_delete_call(
-                            "https://ecomm-demo.utpalpati.repl.co/cart",
-                            { itemId: item._id }
-                          );
-                        } else {
-                          cart_decrease_call(
-                            "https://ecomm-demo.utpalpati.repl.co/cart",
-                            {
-                              items: { itemId: item._id, qty: item.qty - 1 }
-                            }
-                          );
-                        }
-                      }}
-                    >
-                      -
-                    </button>
-                    {item.qty}
-
-                    <button
-                      onClick={() => {
-                        cart_increase_call(
-                          "https://ecomm-demo.utpalpati.repl.co/cart",
-                          {
-                            items: { itemId: item._id, qty: item.qty + 1 }
-                          }
-                        );
-                      }}
-                    >
-                      +
-                    </button>
-                  </div>
+                  {Add_to_cart_button(item._id, item.inStock)}
 
                   {Add_to_wishlist_button(
                     item._id,
