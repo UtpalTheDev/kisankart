@@ -14,11 +14,11 @@ a {
   text-decoration: none;
 }
 .logo > img {
-  width: 100%;
+  width: 40%;
   height: 100%;
 }
 .logo > span {
-  align-self: end;
+  align-self: flex-end;
   line-height: 0.8;
 }
 .ecom-navbar {
@@ -35,7 +35,7 @@ a {
 .productgrid {
   display: grid;
   grid-template-areas: "action items";
-  align-items: baseline;
+  align-items: normal;
   width: 100%;
   grid-template-columns: 17rem auto;
 }
@@ -43,6 +43,7 @@ a {
   grid-area: action;
   position: sticky;
   top: 0;
+  height: max-content;
   width: 15rem;
 }
 .items {
