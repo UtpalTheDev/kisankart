@@ -19,7 +19,7 @@ import Sixpercent from "./Sixpercent";
 import Twentypercent from "./Twentypercent";
 import Fifteenpercent from "./Fifteenpercent";
 import Tenpercent from "./Tenpercent";
-
+import ProductPage from "./ProductPage";
 /*---------------------APP------------------------------*/
 
 export default function App() {
@@ -154,7 +154,9 @@ export default function App() {
             <>
               <div className="added_to_cart">
                 <button
-                  onClick={() => {
+                  onClick={(event) => {
+                    event.preventDefault();
+
                     if (item.qty === 1) {
                       cart_remove_call(
                         "https://ecomm-demo.utpalpati.repl.co/cart",
@@ -175,7 +177,9 @@ export default function App() {
                 {item.qty}
 
                 <button
-                  onClick={() => {
+                  onClick={(event) => {
+                    event.preventDefault();
+
                     cart_increase_call(
                       "https://ecomm-demo.utpalpati.repl.co/cart",
                       {
@@ -198,7 +202,9 @@ export default function App() {
           cursor: inStock ? "pointer" : "not-allowed",
           pointerEvents: inStock ? "auto" : "none"
         }}
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
+
           cart_add_call("https://ecomm-demo.utpalpati.repl.co/cart", {
             items: { itemId: id, qty: 1 }
           });
@@ -243,7 +249,8 @@ export default function App() {
             <>
               <button
                 class="wish"
-                onClick={() => {
+                onClick={(event) => {
+                  event.preventDefault();
                   wishlist_remove_call(
                     "https://ecomm-demo.utpalpati.repl.co/wishlist",
                     { itemId: id }
@@ -259,7 +266,8 @@ export default function App() {
       },
       <button
         class="wish"
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
           wishlist_add_call("https://ecomm-demo.utpalpati.repl.co/wishlist", {
             itemId: id
           });
@@ -441,6 +449,15 @@ export default function App() {
         <Route
           path="/wishlist"
           element={<Wishlist Add_to_cart_button={Add_to_cart_button} />}
+        />
+        <Route
+          path="/:productid"
+          element={
+            <ProductPage
+              Add_to_cart_button={Add_to_cart_button}
+              Add_to_wishlist_button={Add_to_wishlist_button}
+            />
+          }
         />
       </Routes>
     </>

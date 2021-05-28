@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useReduce } from "./Reducer-context";
 import Filter from "./Filter";
 import Sort from "./Sort";
+import { Link } from "react-router-dom";
 
 export default function Products({
   filteredData,
@@ -119,53 +120,55 @@ export default function Products({
                 ratings,
                 isnew
               }) => (
-                <div
-                  class="cards-t1"
+                <Link
+                  to={`/${_id}`}
                   style={{ width: "40%", maxWidth: "210px" }}
                 >
-                  <div class="ratewrapper">
-                    <img class="cards-t1-img" src={image} alt={name} />
-                    <div className="rate">
-                      {ratings}
-                      <i class="fa fa-star"></i>
+                  <div class="cards-t1">
+                    <div class="ratewrapper">
+                      <img class="cards-t1-img" src={image} alt={name} />
+                      <div className="rate">
+                        {ratings}
+                        <i class="fa fa-star"></i>
+                      </div>
                     </div>
-                  </div>
-                  {isnew ? <div class="cards-badge">New</div> : ""}
+                    {isnew ? <div class="cards-badge">New</div> : ""}
 
-                  <div
-                    class="title"
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "..2.",
-                      height: "20px"
-                    }}
-                  >
-                    {name}
-                  </div>
-                  <div class="desc">
-                    {fastDelivery ? "Fast Delivery" : "3 Days Minimum"}
-                  </div>
-                  <span class="cards-t1-oldprice">Rs. {price}</span>
-                  <span class="cards-t1-offer">{offer}% off</span>
+                    <div
+                      class="title"
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "..2.",
+                        height: "20px"
+                      }}
+                    >
+                      {name}
+                    </div>
+                    <div class="desc">
+                      {fastDelivery ? "Fast Delivery" : "3 Days Minimum"}
+                    </div>
+                    <span class="cards-t1-oldprice">Rs. {price}</span>
+                    <span class="cards-t1-offer">{offer}% off</span>
 
-                  <div class="price">
-                    Rs. {(price - (price * offer) / 100).toFixed(2)}
+                    <div class="price">
+                      Rs. {(price - (price * offer) / 100).toFixed(2)}
+                    </div>
+                    {Add_to_cart_button(_id, inStock)}
+                    {Add_to_wishlist_button(
+                      _id,
+                      name,
+                      image,
+                      price,
+                      productName,
+                      inStock,
+                      level,
+                      fastDelivery,
+                      isnew,
+                      ratings,
+                      offer
+                    )}
                   </div>
-                  {Add_to_cart_button(_id, inStock)}
-                  {Add_to_wishlist_button(
-                    _id,
-                    name,
-                    image,
-                    price,
-                    productName,
-                    inStock,
-                    level,
-                    fastDelivery,
-                    isnew,
-                    ratings,
-                    offer
-                  )}
-                </div>
+                </Link>
               )
             )}
           </div>
