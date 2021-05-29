@@ -23,7 +23,6 @@ import ProductPage from "./ProductPage";
 /*---------------------APP------------------------------*/
 
 export default function App() {
-  //console.log(state.sort,state.product);
   let {
     data,
     sortBy,
@@ -39,10 +38,7 @@ export default function App() {
     dispatch
   } = useReduce();
 
-  console.log("widhlist", data);
-
   function getSortedData(productlist, sortBy) {
-    //console.log("ll",sortBy);
     if (sortBy === "PRICE_HIGH_TO_LOW") {
       return productlist.sort((a, b) => b.price - a.price);
     }
@@ -63,7 +59,6 @@ export default function App() {
       showNew
     }
   ) {
-    // console.log(">", showDiscount);
     return productlist
       .filter((item) => (showInventoryAll ? item.inStock : true))
       .filter((item) => (showFastDeliveryOnly ? item.fastDelivery : true))
@@ -79,8 +74,6 @@ export default function App() {
       .filter((item) => (showNew === false ? true : item.isnew === showNew));
   }
 
-  //  console.log("state.sortby", sortBy);
-
   let sortedData = getSortedData(data, sortBy);
   let filteredData = getfilteredData(sortedData, {
     showFastDeliveryOnly,
@@ -90,8 +83,7 @@ export default function App() {
     showDiscount,
     showNew
   });
-  // console.log("lll", filteredData);
-  // console.log("l", showDiscount);
+
   async function cart_add_call(url, payload) {
     try {
       let response = await axios.post(url, payload);

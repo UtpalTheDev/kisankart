@@ -112,9 +112,7 @@ export default function Products({
                 name,
                 image,
                 price,
-                productName,
                 inStock,
-                level,
                 fastDelivery,
                 offer,
                 ratings,
@@ -154,19 +152,7 @@ export default function Products({
                       Rs. {(price - (price * offer) / 100).toFixed(2)}
                     </div>
                     {Add_to_cart_button(_id, inStock)}
-                    {Add_to_wishlist_button(
-                      _id,
-                      name,
-                      image,
-                      price,
-                      productName,
-                      inStock,
-                      level,
-                      fastDelivery,
-                      isnew,
-                      ratings,
-                      offer
-                    )}
+                    {Add_to_wishlist_button(_id)}
                   </div>
                 </Link>
               )

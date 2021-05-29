@@ -53,7 +53,7 @@ export default function Home() {
                 alt="machinery"
               />
             </div>
-            Accesories
+            Accessories
           </div>
         </Link>
       </div>

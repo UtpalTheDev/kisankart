@@ -1,42 +1,10 @@
 import axios from "axios";
 import { useReduce } from "./Reducer-context";
+import { Link } from "react-router-dom";
 
-export default function Cart({
-  Add_to_wishlist_button,
-  Add_to_cart_button,
-  add
-}) {
+export default function Cart({ Add_to_wishlist_button, Add_to_cart_button }) {
   let { cartlist, data, dispatch } = useReduce();
-  // console.log("add to", Add_to_wishlist_button);
-  // console.log("cartdata", cartlist);
 
-  async function cart_increase_call(url, payload) {
-    try {
-      let response = await axios.put(url, payload);
-      if (response.status === 200) {
-        dispatch({
-          type: "INCREASE_IN_CART",
-          payload: payload.items.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function cart_decrease_call(url, payload) {
-    try {
-      let response = await axios.put(url, payload);
-      if (response.status === 200) {
-        dispatch({
-          type: "DECREASE_IN_CART",
-          payload: payload.items.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
   async function cart_delete_call(url, payload) {
     console.log("payload", payload);
     try {
@@ -59,7 +27,6 @@ export default function Cart({
     }
     return {};
   });
-  //console.log("cartdata de", cartdata);
   return (
     <>
       <h5>Cart</h5>
@@ -70,60 +37,56 @@ export default function Cart({
           .map((item) => {
             return (
               <>
-                <div
-                  class="cards-t1"
+                <Link
+                  to={`/${item._id}`}
                   style={{ width: "40%", maxWidth: "210px" }}
                 >
-                  <img class="cards-t1-img" src={item.image} alt={item.name} />
+                  <div class="cards-t1">
+                    <img
+                      class="cards-t1-img"
+                      src={item.image}
+                      alt={item.name}
+                    />
 
-                  <div
-                    class="title"
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "...",
-                      height: "20px"
-                    }}
-                  >
-                    {item.name}
+                    <div
+                      class="title"
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "...",
+                        height: "20px"
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                    <div class="desc">
+                      {item.inStock ? "InStock" : "Out of Stock"}
+                    </div>
+                    <div class="price">
+                      Rs:{" "}
+                      {(item.price - (item.price * item.offer) / 100).toFixed(
+                        2
+                      )}
+                    </div>
+
+                    {Add_to_cart_button(item._id, item.inStock)}
+
+                    {Add_to_wishlist_button(item._id)}
+
+                    <button
+                      class="cancel"
+                      onClick={() => {
+                        cart_delete_call(
+                          "https://ecomm-demo.utpalpati.repl.co/cart",
+                          {
+                            itemId: item._id
+                          }
+                        );
+                      }}
+                    >
+                      X
+                    </button>
                   </div>
-                  <div class="desc">
-                    {item.inStock ? "InStock" : "Out of Stock"}
-                  </div>
-                  <div class="price">
-                    Rs:{" "}
-                    {(item.price - (item.price * item.offer) / 100).toFixed(2)}
-                  </div>
-
-                  {Add_to_cart_button(item._id, item.inStock)}
-
-                  {Add_to_wishlist_button(
-                    item._id,
-                    item.name,
-                    item.image,
-                    item.price,
-                    item.productName,
-                    item.inStock,
-                    item.level,
-                    item.fastDelivery,
-                    item.isnew,
-                    item.ratings,
-                    item.offer
-                  )}
-
-                  <button
-                    class="cancel"
-                    onClick={() => {
-                      cart_delete_call(
-                        "https://ecomm-demo.utpalpati.repl.co/cart",
-                        {
-                          itemId: item._id
-                        }
-                      );
-                    }}
-                  >
-                    X
-                  </button>
-                </div>
+                </Link>
               </>
             );
           })}

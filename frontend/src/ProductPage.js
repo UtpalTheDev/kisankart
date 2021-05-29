@@ -47,7 +47,7 @@ export default function ProductPage({
               {productobj.offer > 0 && (
                 <div className="productpage-offer">
                   Offer
-                  <span>{` - ${productobj.offer}%`}</span>
+                  <span>{` - ${productobj.offer}% off`}</span>
                 </div>
               )}
               <div className="productpage-action">
@@ -62,16 +62,18 @@ export default function ProductPage({
             <div className="productpage-similar-header">Similar Items</div>
             <div className="productpage-similar-items">
               {data
-                .filter((item) => item.idealFor === productobj.idealFor)
+                .filter(
+                  (item) =>
+                    item.idealFor === productobj.idealFor &&
+                    item._id !== productobj._id
+                )
                 .map(
                   ({
                     _id,
                     name,
                     image,
                     price,
-                    productName,
                     inStock,
-                    level,
                     fastDelivery,
                     isnew,
                     ratings,
@@ -119,19 +121,7 @@ export default function ProductPage({
                               Rs. {(price - (price * offer) / 100).toFixed(2)}
                             </div>
                             {Add_to_cart_button(_id, inStock)}
-                            {Add_to_wishlist_button(
-                              _id,
-                              name,
-                              image,
-                              price,
-                              productName,
-                              inStock,
-                              level,
-                              fastDelivery,
-                              isnew,
-                              ratings,
-                              offer
-                            )}
+                            {Add_to_wishlist_button(_id)}
                           </div>
                         </Link>
                       </>
