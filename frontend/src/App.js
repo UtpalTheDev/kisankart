@@ -5,7 +5,7 @@ import kisankartlogo from "./assets/kisankartlogo.png";
 import "./styles.css";
 import { useReduce } from "./Reducer-context";
 import { Route, Routes, Link } from "react-router-dom";
-
+import PrivateRoute from "./PrivateRoute";
 import Products from "./Products";
 import Wishlist from "./Wishlist";
 import Cart from "./Cart";
@@ -20,6 +20,7 @@ import Twentypercent from "./Twentypercent";
 import Fifteenpercent from "./Fifteenpercent";
 import Tenpercent from "./Tenpercent";
 import ProductPage from "./ProductPage";
+import Login from "./Login";
 import {
   cart_add_call,
   cart_decrease_call,
@@ -378,10 +379,11 @@ export default function App() {
             />
           }
         />
-        <Route
+        <PrivateRoute
           path="/wishlist"
           element={<Wishlist Add_to_cart_button={Add_to_cart_button} />}
         />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/:productid"
           element={
