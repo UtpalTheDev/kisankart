@@ -20,6 +20,14 @@ import Twentypercent from "./Twentypercent";
 import Fifteenpercent from "./Fifteenpercent";
 import Tenpercent from "./Tenpercent";
 import ProductPage from "./ProductPage";
+import {
+  cart_add_call,
+  cart_decrease_call,
+  cart_remove_call,
+  wishlist_add_call,
+  wishlist_remove_call,
+  cart_increase_call
+} from "./api/ServerRequest";
 /*---------------------APP------------------------------*/
 
 export default function App() {
@@ -84,60 +92,6 @@ export default function App() {
     showNew
   });
 
-  async function cart_add_call(url, payload) {
-    try {
-      let response = await axios.post(url, payload);
-      if (response.status === 200) {
-        dispatch({
-          type: "ADD_TO_CART",
-          payload: { itemId: payload.items.itemId, qty: payload.items.qty }
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  async function cart_increase_call(url, payload) {
-    try {
-      let response = await axios.put(url, payload);
-      if (response.status === 200) {
-        dispatch({
-          type: "INCREASE_IN_CART",
-          payload: payload.items.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function cart_decrease_call(url, payload) {
-    try {
-      let response = await axios.put(url, payload);
-      if (response.status === 200) {
-        dispatch({
-          type: "DECREASE_IN_CART",
-          payload: payload.items.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  async function cart_remove_call(url, payload) {
-    console.log("payload", payload);
-    try {
-      let response = await axios.delete(url, { data: payload });
-      if (response.status === 200) {
-        dispatch({
-          type: "REMOVE_FROM_CARTLIST",
-          payload: payload.itemId
-        });
-      }
-    } catch (err) {
-      console.log("err", err);
-    }
-  }
   function Add_to_cart_button(id, inStock) {
     return cartlist.reduce(
       (returnobj, item) => {
@@ -152,14 +106,16 @@ export default function App() {
                     if (item.qty === 1) {
                       cart_remove_call(
                         "https://ecomm-demo.utpalpati.repl.co/cart",
-                        { itemId: id }
+                        { itemId: id },
+                        dispatch
                       );
                     } else {
                       cart_decrease_call(
                         "https://ecomm-demo.utpalpati.repl.co/cart",
                         {
                           items: { itemId: id, qty: item.qty - 1 }
-                        }
+                        },
+                        dispatch
                       );
                     }
                   }}
@@ -176,7 +132,8 @@ export default function App() {
                       "https://ecomm-demo.utpalpati.repl.co/cart",
                       {
                         items: { itemId: id, qty: item.qty + 1 }
-                      }
+                      },
+                      dispatch
                     );
                   }}
                 >
@@ -197,9 +154,13 @@ export default function App() {
         onClick={(event) => {
           event.preventDefault();
 
-          cart_add_call("https://ecomm-demo.utpalpati.repl.co/cart", {
-            items: { itemId: id, qty: 1 }
-          });
+          cart_add_call(
+            "https://ecomm-demo.utpalpati.repl.co/cart",
+            {
+              items: { itemId: id, qty: 1 }
+            },
+            dispatch
+          );
         }}
       >
         {inStock ? "Add to Bag" : "Out of Stock"}
@@ -207,32 +168,6 @@ export default function App() {
     );
   }
 
-  async function wishlist_add_call(url, payload) {
-    try {
-      let response = await axios.post(url, payload);
-      if (response.status === 200) {
-        dispatch({
-          type: "ADD_WISH",
-          payload: payload.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  async function wishlist_remove_call(url, payload) {
-    try {
-      let response = await axios.delete(url, { data: payload });
-      if (response.status === 200) {
-        dispatch({
-          type: "REMOVE_WISH",
-          payload: payload.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
   function Add_to_wishlist_button(id) {
     return wishlist.reduce(
       (returnobj, item) => {
@@ -245,7 +180,8 @@ export default function App() {
                   event.preventDefault();
                   wishlist_remove_call(
                     "https://ecomm-demo.utpalpati.repl.co/wishlist",
-                    { itemId: id }
+                    { itemId: id },
+                    dispatch
                   );
                 }}
               >
@@ -260,9 +196,13 @@ export default function App() {
         class="wish"
         onClick={(event) => {
           event.preventDefault();
-          wishlist_add_call("https://ecomm-demo.utpalpati.repl.co/wishlist", {
-            itemId: id
-          });
+          wishlist_add_call(
+            "https://ecomm-demo.utpalpati.repl.co/wishlist",
+            {
+              itemId: id
+            },
+            dispatch
+          );
         }}
       >
         <i class="far fa-heart"></i>

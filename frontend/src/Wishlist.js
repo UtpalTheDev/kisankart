@@ -1,24 +1,9 @@
 import { useReduce } from "./Reducer-context";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { wishlist_remove_call } from "./api/ServerRequest";
 
 export default function Wishlist({ Add_to_cart_button }) {
   let { wishlist, data, dispatch } = useReduce();
-
-  async function wishlist_remove_call(url, payload) {
-    try {
-      let response = await axios.delete(url, { data: payload });
-      if (response.status === 200) {
-        dispatch({
-          type: "REMOVE_WISH",
-          payload: payload.itemId
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   let wishlistdata = wishlist.map((eachitem) => {
     let finddata = data.find((item) => item._id === eachitem);
     if (finddata) {
@@ -62,10 +47,12 @@ export default function Wishlist({ Add_to_cart_button }) {
                   {Add_to_cart_button(item._id, item.inStock)}
                   <button
                     class="cancel"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.preventDefault();
                       wishlist_remove_call(
                         "https://ecomm-demo.utpalpati.repl.co/wishlist",
-                        { itemId: item._id }
+                        { itemId: item._id },
+                        dispatch
                       );
                     }}
                   >
