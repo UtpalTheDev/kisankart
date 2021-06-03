@@ -21,6 +21,8 @@ import Fifteenpercent from "./Fifteenpercent";
 import Tenpercent from "./Tenpercent";
 import ProductPage from "./ProductPage";
 import Login from "./Login";
+import User from "./User";
+import Signup from "./Signup";
 import {
   cart_add_call,
   cart_decrease_call,
@@ -106,13 +108,13 @@ export default function App() {
 
                     if (item.qty === 1) {
                       cart_remove_call(
-                        "https://ecomm-demo.utpalpati.repl.co/cart",
+                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
                         { itemId: id },
                         dispatch
                       );
                     } else {
                       cart_decrease_call(
-                        "https://ecomm-demo.utpalpati.repl.co/cart",
+                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
                         {
                           items: { itemId: id, qty: item.qty - 1 }
                         },
@@ -130,7 +132,7 @@ export default function App() {
                     event.preventDefault();
 
                     cart_increase_call(
-                      "https://ecomm-demo.utpalpati.repl.co/cart",
+                      "https://ecomm-demo-1.utpalpati.repl.co/cart",
                       {
                         items: { itemId: id, qty: item.qty + 1 }
                       },
@@ -156,7 +158,7 @@ export default function App() {
           event.preventDefault();
 
           cart_add_call(
-            "https://ecomm-demo.utpalpati.repl.co/cart",
+            "https://ecomm-demo-1.utpalpati.repl.co/cart",
             {
               items: { itemId: id, qty: 1 }
             },
@@ -180,7 +182,7 @@ export default function App() {
                 onClick={(event) => {
                   event.preventDefault();
                   wishlist_remove_call(
-                    "https://ecomm-demo.utpalpati.repl.co/wishlist",
+                    "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
                     { itemId: id },
                     dispatch
                   );
@@ -198,7 +200,7 @@ export default function App() {
         onClick={(event) => {
           event.preventDefault();
           wishlist_add_call(
-            "https://ecomm-demo.utpalpati.repl.co/wishlist",
+            "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
             {
               itemId: id
             },
@@ -252,13 +254,14 @@ export default function App() {
               )}
             </button>
           </Link>
-
-          <button
-            class="icon-button lg"
-            onClick={() => dispatch({ type: "ROUTE", payload: "user" })}
-          >
-            <i class="far fa-user"></i>
-          </button>
+          <Link to="/user">
+            <button
+              class="icon-button lg"
+              onClick={() => dispatch({ type: "ROUTE", payload: "user" })}
+            >
+              <i class="far fa-user"></i>
+            </button>
+          </Link>
         </div>
       </div>
       {console.log(route)}
@@ -370,7 +373,7 @@ export default function App() {
             />
           }
         />
-        <Route
+        <PrivateRoute
           path="/cart"
           element={
             <Cart
@@ -384,6 +387,10 @@ export default function App() {
           element={<Wishlist Add_to_cart_button={Add_to_cart_button} />}
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        <PrivateRoute path="/user" element={<User />} />
+
         <Route
           path="/:productid"
           element={

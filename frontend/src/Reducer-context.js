@@ -7,11 +7,13 @@ import {
 } from "react";
 import faker from "faker";
 import axios from "axios";
+import { useLogin } from "./LoginContext";
+
 const Reducercontext = createContext();
 
 export function ReducerProvider({ children }) {
   const [data, setdata] = useState([]);
-
+  const { token, isUserLogIn } = useLogin();
   //console.log("42", data);
   const [
     {
@@ -44,29 +46,32 @@ export function ReducerProvider({ children }) {
     (async function () {
       //const { data } = await axios.get("/api/products");
       const { data } = await axios.get(
-        "https://ecomm-demo.utpalpati.repl.co/product"
+        "https://ecomm-demo-1.utpalpati.repl.co/product"
       );
       // console.log("product data", data);
+      if (isUserLogIn) {
+        const cart = await axios.get(
+          "https://ecomm-demo-1.utpalpati.repl.co/cart"
+        );
+        //console.log("cart data", cart.data.items);
 
-      const cart = await axios.get("https://ecomm-demo.utpalpati.repl.co/cart");
-      //console.log("cart data", cart.data.items);
+        const wishlist = await axios.get(
+          "https://ecomm-demo-1.utpalpati.repl.co/wishlist"
+        );
+        //console.log("wishlist data", wishlist.data.items);
 
-      const wishlist = await axios.get(
-        "https://ecomm-demo.utpalpati.repl.co/wishlist"
-      );
-      //console.log("wishlist data", wishlist.data.items);
-
-      dispatch({
-        type: "LOAD_CART",
-        payload: cart.data.items
-      });
-      dispatch({
-        type: "LOAD_WISHLIST",
-        payload: wishlist.data.items
-      });
+        dispatch({
+          type: "LOAD_CART",
+          payload: cart.data.items
+        });
+        dispatch({
+          type: "LOAD_WISHLIST",
+          payload: wishlist.data.items
+        });
+      }
       setdata(data);
     })();
-  }, []);
+  }, [isUserLogIn]);
   return (
     <>
       <Reducercontext.Provider
@@ -193,6 +198,21 @@ function reducer(state, action) {
       return {
         ...state,
         wishlist: action.payload
+      };
+
+    case "RESET":
+      return {
+        ...state,
+        showInventoryAll: true,
+        showFastDeliveryOnly: false,
+        showMaterial: "All",
+        showIdealFor: "All",
+        showDiscount: 0,
+        showNew: false,
+        sortBy: null,
+        cartlist: [],
+        route: "home",
+        wishlist: []
       };
     default:
       return console.log("error");

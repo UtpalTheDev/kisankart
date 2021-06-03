@@ -7,13 +7,13 @@ import { LoginProvider } from "./LoginContext";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <ReducerProvider>
+    <Router>
       <LoginProvider>
-        <Router>
+        <ReducerProvider>
           <App />
-        </Router>
+        </ReducerProvider>
       </LoginProvider>
-    </ReducerProvider>
+    </Router>
   </StrictMode>,
   rootElement
 );

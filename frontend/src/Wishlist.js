@@ -50,7 +50,7 @@ export default function Wishlist({ Add_to_cart_button }) {
                     onClick={(event) => {
                       event.preventDefault();
                       wishlist_remove_call(
-                        "https://ecomm-demo.utpalpati.repl.co/wishlist",
+                        "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
                         { itemId: item._id },
                         dispatch
                       );

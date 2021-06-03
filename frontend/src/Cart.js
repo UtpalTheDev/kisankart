@@ -62,7 +62,7 @@ export default function Cart({ Add_to_wishlist_button, Add_to_cart_button }) {
                       onClick={(event) => {
                         event.preventDefault();
                         cart_remove_call(
-                          "https://ecomm-demo.utpalpati.repl.co/cart",
+                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
                           {
                             itemId: item._id
                           },

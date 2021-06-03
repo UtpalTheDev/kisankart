@@ -3,6 +3,7 @@ import { useLogin } from "./LoginContext";
 
 export default function PrivateRoute({ path, ...props }) {
   const { isUserLogIn } = useLogin();
+  console.log("isuserlogin", isUserLogIn);
   return isUserLogIn ? (
     <Route {...props} path={path} />
   ) : (
