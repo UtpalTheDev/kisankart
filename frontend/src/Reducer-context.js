@@ -48,17 +48,17 @@ export function ReducerProvider({ children }) {
     (async function () {
       //const { data } = await axios.get("/api/products");
       const { data } = await axios.get(
-        "https://ecomm-demo-1.utpalpati.repl.co/product"
+        "https://kisankartbackend.herokuapp.com/product"
       );
       // console.log("product data", data);
       if (isUserLogIn) {
         const cart = await axios.get(
-          "https://ecomm-demo-1.utpalpati.repl.co/cart"
+          "https://kisankartbackend.herokuapp.com/cart"
         );
         //console.log("cart data", cart.data.items);
 
         const wishlist = await axios.get(
-          "https://ecomm-demo-1.utpalpati.repl.co/wishlist"
+          "https://kisankartbackend.herokuapp.com/wishlist"
         );
         //console.log("wishlist data", wishlist.data.items);
 

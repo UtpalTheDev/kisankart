@@ -119,13 +119,13 @@ export default function App() {
                     if (isUserLogIn) {
                       if (item.qty === 1) {
                         cart_remove_call(
-                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                          "https://kisankartbackend.herokuapp.com/cart",
                           { itemId: id },
                           dispatch
                         );
                       } else {
                         cart_decrease_call(
-                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                          "https://kisankartbackend.herokuapp.com/cart",
                           {
                             items: { itemId: id, qty: item.qty - 1 }
                           },
@@ -146,7 +146,7 @@ export default function App() {
                     event.preventDefault();
                     if (isUserLogIn) {
                       cart_increase_call(
-                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                        "https://kisankartbackend.herokuapp.com/cart",
                         {
                           items: { itemId: id, qty: item.qty + 1 }
                         },
@@ -175,7 +175,7 @@ export default function App() {
           event.preventDefault();
           if (isUserLogIn) {
             cart_add_call(
-              "https://ecomm-demo-1.utpalpati.repl.co/cart",
+              "https://kisankartbackend.herokuapp.com/cart",
               {
                 items: { itemId: id, qty: 1 }
               },
@@ -203,7 +203,7 @@ export default function App() {
                   event.preventDefault();
                   if (isUserLogIn) {
                     wishlist_remove_call(
-                      "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+                      "https://kisankartbackend.herokuapp.com/wishlist",
                       { itemId: id },
                       dispatch
                     );
@@ -225,7 +225,7 @@ export default function App() {
           event.preventDefault();
           if (isUserLogIn) {
             wishlist_add_call(
-              "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+              "https://kisankartbackend.herokuapp.com/wishlist",
               {
                 itemId: id
               },

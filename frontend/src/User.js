@@ -11,7 +11,7 @@ export default function User() {
     (async function () {
       try {
         let response = await axios.get(
-          "https://ecomm-demo-1.utpalpati.repl.co/user"
+          "https://kisankartbackend.herokuapp.com/user"
         );
         dispatch({ type: "USER", payload: response.data });
       } catch (error) {
