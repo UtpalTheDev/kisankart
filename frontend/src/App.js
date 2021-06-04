@@ -53,7 +53,6 @@ export default function App() {
     showDiscount,
     showNew,
     cartlist,
-    route,
     wishlist,
     dispatch
   } = useReduce();
