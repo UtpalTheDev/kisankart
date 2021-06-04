@@ -454,6 +454,22 @@ a {
   min-width: 300px;
 }
 
+/*-------------------------user--------------------*/
+.user {
+  display: flex;
+  justify-content: center;
+}
+.user-data {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.user-logout {
+  position: fixed;
+  top: 10%;
+  right: 2%;
+}
+
 @media only screen and (min-width: 600px) {
   .rate {
     font-size: 12px;

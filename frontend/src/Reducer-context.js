@@ -17,6 +17,7 @@ export function ReducerProvider({ children }) {
   //console.log("42", data);
   const [
     {
+      user,
       sortBy,
       showFastDeliveryOnly,
       showInventoryAll,
@@ -30,6 +31,7 @@ export function ReducerProvider({ children }) {
     },
     dispatch
   ] = useReducer(reducer, {
+    user: {},
     showInventoryAll: true,
     showFastDeliveryOnly: false,
     showMaterial: "All",
@@ -77,6 +79,7 @@ export function ReducerProvider({ children }) {
       <Reducercontext.Provider
         value={{
           data,
+          user,
           sortBy,
           showFastDeliveryOnly,
           showInventoryAll,
@@ -106,6 +109,12 @@ function reducer(state, action) {
   switch (action.type) {
     case "ROUTE":
       return { ...state, route: action.payload };
+
+    case "USER":
+      return {
+        ...state,
+        user: { name: action.payload.userName, email: action.payload.email }
+      };
     case "IDEAL":
       return { ...state, showIdealFor: action.payload };
     case "MATERIAL":
@@ -203,6 +212,7 @@ function reducer(state, action) {
     case "RESET":
       return {
         ...state,
+        user:{},
         showInventoryAll: true,
         showFastDeliveryOnly: false,
         showMaterial: "All",
