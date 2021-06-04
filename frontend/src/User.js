@@ -27,7 +27,7 @@ export default function User() {
       </div>
 
       <button
-        className="user-logout"
+        className="user-logout primary-button"
         onClick={() => {
           logout();
           dispatch({ type: "RESET" });
