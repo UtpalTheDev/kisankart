@@ -243,7 +243,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className="App">
       <div className="ecom-navbar">
         <Link to="/">
           <div className="logo">
@@ -430,6 +430,6 @@ export default function App() {
           }
         />
       </Routes>
-    </>
+    </div>
   );
 }

@@ -3,6 +3,9 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined";
 
+.App {
+  min-height: 100vh;
+}
 .logo {
   width: 100px;
   align-self: flex-start;
@@ -402,10 +405,28 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 89vh;
+  flex-wrap: wrap;
+}
+.login-sideimg {
+  height: 100%;
+  flex: 3;
+  min-width: 300px;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  padding: 0rem 2rem;
+  flex: 2;
 }
 .form {
   width: 200px;
+}
+.form-action {
+  display: flex;
+  justify-content: center;
 }
 .form label {
   width: 100%;
@@ -424,8 +445,15 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 89vh;
+  flex-wrap: wrap;
 }
+.signup-sideimg {
+  height: 100%;
+  flex: 3;
+  min-width: 300px;
+}
+
 @media only screen and (min-width: 600px) {
   .rate {
     font-size: 12px;
