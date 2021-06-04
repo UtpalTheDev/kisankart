@@ -6,6 +6,7 @@ import treebanner from "./assets/treebanner.png";
 
 export default function Signup() {
   let { isUserLogIn } = useLogin();
+  let [error, setError] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,9 +27,12 @@ export default function Signup() {
         { user: { userName, email, password } }
       );
       if (response.status === 200) {
+        setError("");
         navigate("/login");
       }
     } catch (error) {
+      setError(error.response.data.message);
+
       console.log("signuphandler error");
     }
   }
@@ -45,6 +49,7 @@ export default function Signup() {
 
       <div className="form-container">
         <h3>Signup</h3>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -94,6 +99,7 @@ export default function Signup() {
             </button>
           </div>
         </form>
+        <div style={{ color: "red" }}>{error}</div>
       </div>
     </div>
   );

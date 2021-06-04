@@ -8,15 +8,16 @@ export default function Login() {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
   let { state } = useLocation();
-
+  let [error, setError] = useState("");
   useEffect(() => {
     if (isUserLogIn) {
       navigate(state?.from ? state.from : "/", { replace: true });
     }
   }, [isUserLogIn]);
 
-  function LoginHandler() {
-    LoginWithCredentials(email, password);
+  async function LoginHandler() {
+    let errorpassed = await LoginWithCredentials(email, password);
+    setError(errorpassed);
   }
   return (
     <div className="login">
@@ -31,6 +32,7 @@ export default function Login() {
 
       <div className="form-container">
         <h3>Login</h3>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -69,6 +71,7 @@ export default function Login() {
             </button>
           </div>
         </form>
+        <div style={{ color: "red" }}>{error}</div>
       </div>
     </div>
   );

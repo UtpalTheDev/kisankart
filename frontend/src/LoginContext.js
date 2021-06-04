@@ -46,7 +46,9 @@ export function LoginProvider({ children }) {
         loginUser(response.data);
       }
     } catch (error) {
+      console.log(error.response);
       console.log("loginwithcredentials error");
+      return error.response.data.message;
     }
   }
   function loginUser({ token }) {
