@@ -397,6 +397,35 @@ a {
   transition: transform 0.3s ease;
 }
 
+/*-----------------------login----------------*/
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form {
+  width: 200px;
+}
+.form label {
+  width: 100%;
+  box-sizing: border-box;
+  height: 80px;
+}
+.input.md > .input-text {
+  width: 100%;
+  box-sizing: border-box;
+  height: 30px;
+}
+
+/*------------------------signup----------------------*/
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 @media only screen and (min-width: 600px) {
   .rate {
     font-size: 12px;

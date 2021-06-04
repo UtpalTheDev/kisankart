@@ -4,7 +4,14 @@ import axios from "axios";
 import kisankartlogo from "./assets/kisankartlogo.png";
 import "./styles.css";
 import { useReduce } from "./Reducer-context";
-import { Route, Routes, Link } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+  Navigate,
+  useLocation
+} from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Products from "./Products";
 import Wishlist from "./Wishlist";
@@ -23,6 +30,8 @@ import ProductPage from "./ProductPage";
 import Login from "./Login";
 import User from "./User";
 import Signup from "./Signup";
+import { useLogin } from "./LoginContext";
+
 import {
   cart_add_call,
   cart_decrease_call,
@@ -48,6 +57,9 @@ export default function App() {
     wishlist,
     dispatch
   } = useReduce();
+  const { isUserLogIn } = useLogin();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   function getSortedData(productlist, sortBy) {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
@@ -105,21 +117,24 @@ export default function App() {
                 <button
                   onClick={(event) => {
                     event.preventDefault();
-
-                    if (item.qty === 1) {
-                      cart_remove_call(
-                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
-                        { itemId: id },
-                        dispatch
-                      );
+                    if (isUserLogIn) {
+                      if (item.qty === 1) {
+                        cart_remove_call(
+                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                          { itemId: id },
+                          dispatch
+                        );
+                      } else {
+                        cart_decrease_call(
+                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                          {
+                            items: { itemId: id, qty: item.qty - 1 }
+                          },
+                          dispatch
+                        );
+                      }
                     } else {
-                      cart_decrease_call(
-                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
-                        {
-                          items: { itemId: id, qty: item.qty - 1 }
-                        },
-                        dispatch
-                      );
+                      navigate("/login");
                     }
                   }}
                 >
@@ -130,14 +145,17 @@ export default function App() {
                 <button
                   onClick={(event) => {
                     event.preventDefault();
-
-                    cart_increase_call(
-                      "https://ecomm-demo-1.utpalpati.repl.co/cart",
-                      {
-                        items: { itemId: id, qty: item.qty + 1 }
-                      },
-                      dispatch
-                    );
+                    if (isUserLogIn) {
+                      cart_increase_call(
+                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                        {
+                          items: { itemId: id, qty: item.qty + 1 }
+                        },
+                        dispatch
+                      );
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                 >
                   +
@@ -156,14 +174,17 @@ export default function App() {
         }}
         onClick={(event) => {
           event.preventDefault();
-
-          cart_add_call(
-            "https://ecomm-demo-1.utpalpati.repl.co/cart",
-            {
-              items: { itemId: id, qty: 1 }
-            },
-            dispatch
-          );
+          if (isUserLogIn) {
+            cart_add_call(
+              "https://ecomm-demo-1.utpalpati.repl.co/cart",
+              {
+                items: { itemId: id, qty: 1 }
+              },
+              dispatch
+            );
+          } else {
+            navigate("/login", { state: { from: pathname } });
+          }
         }}
       >
         {inStock ? "Add to Bag" : "Out of Stock"}
@@ -181,11 +202,15 @@ export default function App() {
                 class="wish"
                 onClick={(event) => {
                   event.preventDefault();
-                  wishlist_remove_call(
-                    "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
-                    { itemId: id },
-                    dispatch
-                  );
+                  if (isUserLogIn) {
+                    wishlist_remove_call(
+                      "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+                      { itemId: id },
+                      dispatch
+                    );
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <i class="fas fa-heart" style={{ color: "rgb(186, 0, 0)" }}></i>
@@ -199,13 +224,17 @@ export default function App() {
         class="wish"
         onClick={(event) => {
           event.preventDefault();
-          wishlist_add_call(
-            "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
-            {
-              itemId: id
-            },
-            dispatch
-          );
+          if (isUserLogIn) {
+            wishlist_add_call(
+              "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+              {
+                itemId: id
+              },
+              dispatch
+            );
+          } else {
+            navigate("/login");
+          }
         }}
       >
         <i class="far fa-heart"></i>
@@ -264,7 +293,7 @@ export default function App() {
           </Link>
         </div>
       </div>
-      {console.log(route)}
+      {console.log("app.js")}
 
       <Routes>
         <Route path="/" element={<Home />} />
