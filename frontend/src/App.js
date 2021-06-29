@@ -446,19 +446,7 @@ export default function App() {
       </Routes>
 
       {loading && (
-        <div
-          style={{
-            position: "fixed",
-            top: "0",
-            zIndex: "10",
-            background: " rgb(255,255,255,0.87)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100vw",
-            height: "100vh"
-          }}
-        >
+        <div className="loader">
           <Loader
             type="BallTriangle"
             color="green"

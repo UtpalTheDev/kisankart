@@ -6,6 +6,17 @@
 .App {
   min-height: 100vh;
 }
+.loader {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: rgb(255, 255, 255, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
 .logo {
   width: 100px;
   align-self: flex-start;
