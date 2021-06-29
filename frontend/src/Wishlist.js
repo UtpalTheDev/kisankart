@@ -20,7 +20,7 @@ export default function Wishlist({ Add_to_cart_button }) {
           return (
             <>
               <Link
-                to={`/${item._id}`}
+                to={`/product/${item._id}`}
                 style={{ width: "40%", maxWidth: "210px" }}
               >
                 <div class="cards-t1">

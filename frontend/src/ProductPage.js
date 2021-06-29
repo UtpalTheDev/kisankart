@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useReduce } from "./Reducer-context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ProductPage({
   Add_to_cart_button,
@@ -8,14 +9,17 @@ export default function ProductPage({
 }) {
   const { productid } = useParams();
   const { data } = useReduce();
-
+  let navigate = useNavigate();
   let productobj;
   if (data.length > 0) {
     productobj = data.find((item) => item._id === productid);
   }
+  useEffect(() => {
+    productobj === undefined && navigate("/*", { replace: true });
+  }, []);
   return (
     <>
-      {data.length > 0 && (
+      {data.length > 0 && productobj !== undefined && (
         <div>
           <div className="productpage-wrapper">
             <div className="productpage-image">
@@ -82,7 +86,7 @@ export default function ProductPage({
                     return (
                       <>
                         <Link
-                          to={`/${_id}`}
+                          to={`/product/${_id}`}
                           style={{ width: "40%", maxWidth: "210px" }}
                         >
                           <div class="cards-t1">

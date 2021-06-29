@@ -31,7 +31,7 @@ import Login from "./Login";
 import User from "./User";
 import Signup from "./Signup";
 import { useLogin } from "./LoginContext";
-
+import NotFound from "./NotFound";
 import {
   cart_add_call,
   cart_decrease_call,
@@ -435,7 +435,7 @@ export default function App() {
         <PrivateRoute path="/user" element={<User />} />
 
         <Route
-          path="/:productid"
+          path="/product/:productid"
           element={
             <ProductPage
               Add_to_cart_button={Add_to_cart_button}
@@ -443,6 +443,8 @@ export default function App() {
             />
           }
         />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {loading && (

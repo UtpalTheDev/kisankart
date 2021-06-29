@@ -119,7 +119,7 @@ export default function Products({
                 isnew
               }) => (
                 <Link
-                  to={`/${_id}`}
+                  to={`/product/${_id}`}
                   style={{ width: "40%", maxWidth: "210px" }}
                 >
                   <div class="cards-t1">
