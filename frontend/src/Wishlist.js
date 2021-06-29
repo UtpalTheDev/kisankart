@@ -1,7 +1,7 @@
 import { useReduce } from "./Reducer-context";
 import { Link } from "react-router-dom";
 import { wishlist_remove_call } from "./api/ServerRequest";
-
+import { toast } from "react-toastify";
 export default function Wishlist({ Add_to_cart_button }) {
   let { wishlist, data, dispatch } = useReduce();
   let wishlistdata = wishlist.map((eachitem) => {
@@ -47,13 +47,15 @@ export default function Wishlist({ Add_to_cart_button }) {
                   {Add_to_cart_button(item._id, item.inStock)}
                   <button
                     class="cancel"
-                    onClick={(event) => {
+                    onClick={async (event) => {
                       event.preventDefault();
-                      wishlist_remove_call(
+                      let wishlistmsg = await wishlist_remove_call(
                         "https://kisankartbackend.herokuapp.com/wishlist",
                         { itemId: item._id },
                         dispatch
                       );
+                      const notify = () => toast.warn(wishlistmsg);
+                      notify();
                     }}
                   >
                     X

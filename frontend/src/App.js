@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import kisankartlogo from "./assets/kisankartlogo.png";
 import "./styles.css";
 import { useReduce } from "./Reducer-context";
@@ -53,6 +54,7 @@ export default function App() {
     showDiscount,
     showNew,
     cartlist,
+    route,
     wishlist,
     dispatch
   } = useReduce();
@@ -114,23 +116,28 @@ export default function App() {
             <>
               <div className="added_to_cart">
                 <button
-                  onClick={(event) => {
+                  onClick={async (event) => {
                     event.preventDefault();
                     if (isUserLogIn) {
                       if (item.qty === 1) {
-                        cart_remove_call(
+                        let cartmsg = await cart_remove_call(
                           "https://kisankartbackend.herokuapp.com/cart",
                           { itemId: id },
                           dispatch
                         );
+                        const notify = () => toast.warn(cartmsg);
+                        notify();
+                        console.log("delete");
                       } else {
-                        cart_decrease_call(
+                        let cartmsg = await cart_decrease_call(
                           "https://kisankartbackend.herokuapp.com/cart",
                           {
                             items: { itemId: id, qty: item.qty - 1 }
                           },
                           dispatch
                         );
+                        const notify = () => toast.warn(cartmsg);
+                        notify();
                       }
                     } else {
                       navigate("/login");
@@ -142,16 +149,18 @@ export default function App() {
                 {item.qty}
 
                 <button
-                  onClick={(event) => {
+                  onClick={async (event) => {
                     event.preventDefault();
                     if (isUserLogIn) {
-                      cart_increase_call(
+                      let cartmsg = await cart_increase_call(
                         "https://kisankartbackend.herokuapp.com/cart",
                         {
                           items: { itemId: id, qty: item.qty + 1 }
                         },
                         dispatch
                       );
+                      const notify = () => toast.success(cartmsg);
+                      notify();
                     } else {
                       navigate("/login");
                     }
@@ -171,16 +180,18 @@ export default function App() {
           cursor: inStock ? "pointer" : "not-allowed",
           pointerEvents: inStock ? "auto" : "none"
         }}
-        onClick={(event) => {
+        onClick={async (event) => {
           event.preventDefault();
           if (isUserLogIn) {
-            cart_add_call(
+            let cartmsg = await cart_add_call(
               "https://kisankartbackend.herokuapp.com/cart",
               {
                 items: { itemId: id, qty: 1 }
               },
               dispatch
             );
+            const notify = () => toast.success(cartmsg);
+            notify();
           } else {
             navigate("/login", { state: { from: pathname } });
           }
@@ -199,14 +210,16 @@ export default function App() {
             <>
               <button
                 class="wish"
-                onClick={(event) => {
+                onClick={async (event) => {
                   event.preventDefault();
                   if (isUserLogIn) {
-                    wishlist_remove_call(
+                    let wishlistmsg = await wishlist_remove_call(
                       "https://kisankartbackend.herokuapp.com/wishlist",
                       { itemId: id },
                       dispatch
                     );
+                    const notify = () => toast.warn(wishlistmsg);
+                    notify();
                   } else {
                     navigate("/login");
                   }
@@ -221,16 +234,18 @@ export default function App() {
       },
       <button
         class="wish"
-        onClick={(event) => {
+        onClick={async (event) => {
           event.preventDefault();
           if (isUserLogIn) {
-            wishlist_add_call(
+            let wishlistmsg = await wishlist_add_call(
               "https://kisankartbackend.herokuapp.com/wishlist",
               {
                 itemId: id
               },
               dispatch
             );
+            const notify = () => toast.success(wishlistmsg);
+            notify();
           } else {
             navigate("/login");
           }
@@ -429,6 +444,11 @@ export default function App() {
           }
         />
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={true}
+      />
     </div>
   );
 }
