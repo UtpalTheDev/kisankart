@@ -2,8 +2,10 @@ import { useLogin } from "./LoginContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import treebanner from "./assets/treebanner.png";
+import { useReduce } from "./Reducer-context";
 export default function Login() {
   let { isUserLogIn, LoginWithCredentials } = useLogin();
+  const { dispatch, user } = useReduce();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
@@ -16,8 +18,10 @@ export default function Login() {
   }, [isUserLogIn]);
 
   async function LoginHandler() {
+    dispatch({ type: "LOAD", payload: true });
     let errorpassed = await LoginWithCredentials(email, password);
     setError(errorpassed);
+    dispatch({ type: "LOAD", payload: false });
   }
   return (
     <div className="login">

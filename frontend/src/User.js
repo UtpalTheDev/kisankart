@@ -10,10 +10,12 @@ export default function User() {
   useEffect(() => {
     (async function () {
       try {
+        dispatch({ type: "LOAD", payload: true });
         let response = await axios.get(
           "https://kisankartbackend.herokuapp.com/user"
         );
         dispatch({ type: "USER", payload: response.data });
+        dispatch({ type: "LOAD", payload: false });
       } catch (error) {
         console.log(error);
       }

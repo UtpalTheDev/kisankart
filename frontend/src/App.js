@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import Loader from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import kisankartlogo from "./assets/kisankartlogo.png";
@@ -10,7 +10,6 @@ import {
   Routes,
   Link,
   useNavigate,
-  Navigate,
   useLocation
 } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -56,12 +55,13 @@ export default function App() {
     cartlist,
     route,
     wishlist,
-    dispatch
+    dispatch,
+    loading
   } = useReduce();
   const { isUserLogIn } = useLogin();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
+  console.log("loading", loading);
   function getSortedData(productlist, sortBy) {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
       return productlist.sort((a, b) => b.price - a.price);
@@ -444,6 +444,30 @@ export default function App() {
           }
         />
       </Routes>
+
+      {loading && (
+        <div
+          style={{
+            position: "fixed",
+            top: "0",
+            zIndex: "10",
+            background: " rgb(255,255,255,0.87)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100vw",
+            height: "100vh"
+          }}
+        >
+          <Loader
+            type="BallTriangle"
+            color="green"
+            height={100}
+            width={100}
+            timeout={1000000} //3 secs
+          />
+        </div>
+      )}
       <ToastContainer
         position="bottom-right"
         autoClose={3000}

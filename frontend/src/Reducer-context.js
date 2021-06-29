@@ -5,7 +5,6 @@ import {
   useReducer,
   useState
 } from "react";
-import faker from "faker";
 import axios from "axios";
 import { useLogin } from "./LoginContext";
 
@@ -27,7 +26,8 @@ export function ReducerProvider({ children }) {
       showNew,
       cartlist,
       route,
-      wishlist
+      wishlist,
+      loading
     },
     dispatch
   ] = useReducer(reducer, {
@@ -41,37 +41,46 @@ export function ReducerProvider({ children }) {
     sortBy: null,
     cartlist: [],
     route: "home",
-    wishlist: []
+    wishlist: [],
+    loading: false
   });
 
   useEffect(() => {
     (async function () {
       //const { data } = await axios.get("/api/products");
-      const { data } = await axios.get(
-        "https://kisankartbackend.herokuapp.com/product"
-      );
-      // console.log("product data", data);
-      if (isUserLogIn) {
-        const cart = await axios.get(
-          "https://kisankartbackend.herokuapp.com/cart"
+      try {
+        dispatch({ type: "LOAD", payload: true });
+        console.log("11111");
+        const { data } = await axios.get(
+          "https://kisankartbackend.herokuapp.com/product"
         );
-        //console.log("cart data", cart.data.items);
 
-        const wishlist = await axios.get(
-          "https://kisankartbackend.herokuapp.com/wishlist"
-        );
-        //console.log("wishlist data", wishlist.data.items);
+        // console.log("product data", data);
+        if (isUserLogIn) {
+          dispatch({ type: "LOAD", payload: true });
 
-        dispatch({
-          type: "LOAD_CART",
-          payload: cart.data.items
-        });
-        dispatch({
-          type: "LOAD_WISHLIST",
-          payload: wishlist.data.items
-        });
-      }
-      setdata(data);
+          const cart = await axios.get(
+            "https://kisankartbackend.herokuapp.com/cart"
+          );
+          //console.log("cart data", cart.data.items);
+
+          const wishlist = await axios.get(
+            "https://kisankartbackend.herokuapp.com/wishlist"
+          );
+          //console.log("wishlist data", wishlist.data.items);
+
+          dispatch({
+            type: "LOAD_CART",
+            payload: cart.data.items
+          });
+          dispatch({
+            type: "LOAD_WISHLIST",
+            payload: wishlist.data.items
+          });
+        }
+        setdata(data);
+        dispatch({ type: "LOAD", payload: false });
+      } catch (error) {}
     })();
   }, [isUserLogIn]);
   return (
@@ -90,7 +99,8 @@ export function ReducerProvider({ children }) {
           cartlist,
           route,
           wishlist,
-          dispatch
+          dispatch,
+          loading
         }}
       >
         {children}
@@ -107,6 +117,8 @@ function reducer(state, action) {
   //console.log("reducer fn");
 
   switch (action.type) {
+    case "LOAD":
+      return { ...state, loading: action.payload };
     case "ROUTE":
       return { ...state, route: action.payload };
 
@@ -212,7 +224,7 @@ function reducer(state, action) {
     case "RESET":
       return {
         ...state,
-        user:{},
+        user: {},
         showInventoryAll: true,
         showFastDeliveryOnly: false,
         showMaterial: "All",

@@ -3,9 +3,10 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import treebanner from "./assets/treebanner.png";
-
+import { useReduce } from "./Reducer-context";
 export default function Signup() {
   let { isUserLogIn } = useLogin();
+  let { dispatch } = useReduce();
   let [error, setError] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ export default function Signup() {
 
   async function signupHandler() {
     try {
+      dispatch({ type: "LOAD", payload: true });
       let response = await axios.post(
         "https://ecomm-demo-1.utpalpati.repl.co/signup",
         { user: { userName, email, password } }
@@ -30,9 +32,10 @@ export default function Signup() {
         setError("");
         navigate("/login");
       }
+      dispatch({ type: "LOAD", payload: false });
     } catch (error) {
       setError(error.response.data.message);
-
+      dispatch({ type: "LOAD", payload: false });
       console.log("signuphandler error");
     }
   }
