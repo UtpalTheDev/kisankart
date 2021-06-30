@@ -26,8 +26,11 @@ export default function Filter({ setshowfilter, range, setrange }) {
           />
           Fast Delivery
         </li>
-        <li>
-          <label htmlFor="PRICE_RANGE"> Price Range </label>
+        <li style={{ paddingLeft: "0.2rem", paddingTop: "0.5rem" }}>
+          Price Range
+        </li>
+        <li style={{ paddingLeft: "0.2rem" }}>
+          {`Rs:0`}
           <input
             id="PRICE_RANGE"
             name="PRICE_RANGE"
@@ -40,7 +43,7 @@ export default function Filter({ setshowfilter, range, setrange }) {
               setrange((prev) => (e.target.value < 100 ? 100 : e.target.value))
             }
           />
-          {`Rs0-Rs${range}`}
+          {`Rs${range}`}
         </li>
         <button
           class="primary-button lg filterapply"

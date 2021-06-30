@@ -47,6 +47,7 @@ a {
   position: sticky;
   top: 0;
 }
+/*------------product------*/
 .productgrid {
   display: grid;
   grid-template-areas: "action items";
@@ -60,6 +61,8 @@ a {
   top: 0;
   height: max-content;
   width: 15rem;
+  padding-top: 20%;
+  padding-left: 0.5rem;
 }
 .items {
   grid-area: items;
@@ -78,7 +81,7 @@ a {
   box-shadow: 0 2px 16px 4px rgba(40, 44, 63, 0.07);
   transition: transform 0.3s ease;
 }
-
+/*-----------button-------*/
 .added_to_cart {
   width: 92%;
   margin-bottom: 5px;
@@ -147,6 +150,7 @@ a {
   width: 40px;
   height: 40px;
 }
+/*-------------sort----------*/
 .sortpopup {
   position: fixed;
   bottom: 0px;
@@ -163,6 +167,14 @@ a {
   width: 100%;
   background: white;
 }
+.sortblock li {
+  padding: 0.3rem;
+  cursor: pointer;
+}
+.sortblock li:hover {
+  background: #e2e2e2;
+}
+/*---------------filter---------*/
 .filterlist {
   padding-top: 2rem;
 }
@@ -181,13 +193,6 @@ a {
   right: 0;
 }
 
-.sortblock li {
-  padding: 0.3rem;
-  cursor: pointer;
-}
-.sortblock li:hover {
-  background: #e2e2e2;
-}
 .sort-filter {
   position: fixed;
   width: 100%;
@@ -225,6 +230,7 @@ a {
   max-width: 50%;
   min-width: 50px;
 }
+/*-----------home-----------*/
 .round-category {
   display: flex;
   align-items: center;

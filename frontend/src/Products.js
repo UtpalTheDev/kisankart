@@ -47,23 +47,25 @@ export default function Products({
                 <input
                   type="radio"
                   name="sort1"
+                  id="PRICE_HIGH_TO_LOW"
                   checked={sortBy === "PRICE_HIGH_TO_LOW"}
                   onClick={() => {
                     dispatch({ type: "SORT", payload: "PRICE_HIGH_TO_LOW" });
                   }}
                 />
-                Price high to low
+                <label for="PRICE_HIGH_TO_LOW">Price high to low</label>
               </li>
               <li>
                 <input
                   type="radio"
                   name="sort1"
+                  id="PRICE_LOW_TO_HIGH"
                   checked={sortBy === "PRICE_LOW_TO_HIGH"}
                   onClick={() => {
                     dispatch({ type: "SORT", payload: "PRICE_LOW_TO_HIGH" });
                   }}
                 />
-                Price low to high
+                <label for="PRICE_LOW_TO_HIGH">Price low to high</label>
               </li>
             </ul>
             Filter
