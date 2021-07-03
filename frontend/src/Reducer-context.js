@@ -113,7 +113,7 @@ export function useReduce() {
   return useContext(Reducercontext);
 }
 
-function reducer(state, action) {
+export function reducer(state, action) {
   //console.log("reducer fn");
 
   switch (action.type) {
