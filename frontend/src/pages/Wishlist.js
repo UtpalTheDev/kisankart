@@ -1,8 +1,8 @@
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
-import { wishlist_remove_call } from "./api/ServerRequest";
+import { wishlist_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
-export default function Wishlist({ Add_to_cart_button }) {
+export function Wishlist({ Add_to_cart_button }) {
   let { wishlist, data, dispatch } = useReduce();
   let wishlistdata = wishlist.map((eachitem) => {
     let finddata = data.find((item) => item._id === eachitem);

@@ -1,6 +1,6 @@
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 
-export default function Filter({ setshowfilter, range, setrange }) {
+export function Filter({ setshowfilter, range, setrange }) {
   let {
     sortBy,
     showInventoryAll,

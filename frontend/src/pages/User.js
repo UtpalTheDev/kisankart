@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useLogin } from "./LoginContext";
-import { useReduce } from "./Reducer-context";
+import { useLogin } from "../Reducer-context/LoginContext";
+import { useReduce } from "../Reducer-context/Reducer-context";
 
-export default function User() {
+export function User() {
   const { logout, isUserLogIn } = useLogin();
   const { dispatch, user } = useReduce();
 

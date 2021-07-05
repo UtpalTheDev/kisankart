@@ -1,7 +1,7 @@
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+export function Home() {
   let { dispatch } = useReduce();
   return (
     <>
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link to="accesories" className="Link">
+        <Link to="accessories" className="Link">
           {" "}
           <div>
             {" "}

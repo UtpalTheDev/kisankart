@@ -1,9 +1,9 @@
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
-import { cart_remove_call } from "./api/ServerRequest";
+import { cart_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
 
-export default function Cart({ Add_to_wishlist_button, Add_to_cart_button }) {
+export function Cart({ Add_to_wishlist_button, Add_to_cart_button }) {
   let { cartlist, data, dispatch } = useReduce();
 
   let cartdata = cartlist.map((eachitem) => {

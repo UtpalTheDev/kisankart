@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import kisankartlogo from "./assets/kisankartlogo.png";
 import "./styles.css";
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "./Reducer-context/Reducer-context";
 import {
   Route,
   Routes,
@@ -13,25 +13,45 @@ import {
   useLocation
 } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-import Products from "./Products";
-import Wishlist from "./Wishlist";
-import Cart from "./Cart";
-import Home from "./Home";
-import Seed from "./Seed";
-import Fertilizer from "./Fertilizer";
-import Pesticide from "./Pesticide";
-import Accesories from "./Accesories";
-import New from "./New";
-import Sixpercent from "./Sixpercent";
-import Twentypercent from "./Twentypercent";
-import Fifteenpercent from "./Fifteenpercent";
-import Tenpercent from "./Tenpercent";
-import ProductPage from "./ProductPage";
-import Login from "./Login";
-import User from "./User";
-import Signup from "./Signup";
-import { useLogin } from "./LoginContext";
-import NotFound from "./NotFound";
+// import Products from "./Products";
+// import Wishlist from "./Wishlist";
+// import Cart from "./Cart";
+// import Home from "./Home";
+// import Seed from "./Seed";
+// import Fertilizer from "./Fertilizer";
+// import Pesticide from "./Pesticide";
+// import Accesories from "./Accesories";
+// import New from "./New";
+// import Sixpercent from "./Sixpercent";
+// import Twentypercent from "./Twentypercent";
+// import Fifteenpercent from "./Fifteenpercent";
+// import Tenpercent from "./Tenpercent";
+// import ProductPage from "./ProductPage";
+// import Login from "./Login";
+// import User from "./User";
+// import Signup from "./Signup";
+import {
+  Products,
+  ProductPage,
+  User,
+  Seed,
+  Fertilizer,
+  Pesticide,
+  Wishlist,
+  Home,
+  Accessories,
+  New,
+  Sixpercent,
+  Twentypercent,
+  Fifteenpercent,
+  Tenpercent,
+  Login,
+  Signup,
+  NotFound,
+  Cart
+} from "./pages";
+import { useLogin } from "./Reducer-context/LoginContext";
+
 import {
   cart_add_call,
   cart_decrease_call,
@@ -357,9 +377,9 @@ export default function App() {
         />
 
         <Route
-          path="/accesories"
+          path="/accessories"
           element={
-            <Accesories
+            <Accessories
               filteredData={filteredData}
               Add_to_cart_button={Add_to_cart_button}
               Add_to_wishlist_button={Add_to_wishlist_button}

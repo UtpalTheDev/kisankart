@@ -1,12 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export default function ProductPage({
-  Add_to_cart_button,
-  Add_to_wishlist_button
-}) {
+export function ProductPage({ Add_to_cart_button, Add_to_wishlist_button }) {
   const { productid } = useParams();
   const { data } = useReduce();
   let navigate = useNavigate();

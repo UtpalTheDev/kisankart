@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
-import Product from "./Products";
-export default function Women({
+import { Products } from "./Products";
+export function Fertilizer({
   filteredData,
   Add_to_cart_button,
   Add_to_wishlist_button
@@ -15,7 +15,7 @@ export default function Women({
   }, []);
   return (
     <>
-      <Product
+      <Products
         filteredData={filteredData}
         Add_to_cart_button={Add_to_cart_button}
         Add_to_wishlist_button={Add_to_wishlist_button}

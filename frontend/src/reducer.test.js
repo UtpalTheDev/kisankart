@@ -1,4 +1,4 @@
-import { reducer } from "./Reducer-context";
+import { reducer } from "./Reducer-context/Reducer-context";
 /*-------------cartlist test------*/
 describe("reducer cartlist test", () => {
   it("should add to cart when a value is added", () => {

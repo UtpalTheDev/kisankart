@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
-import Product from "./Products";
-export default function Boy({
+import { Products } from "./Products";
+export function New({
   filteredData,
   Add_to_cart_button,
   Add_to_wishlist_button
@@ -10,12 +10,12 @@ export default function Boy({
   let { dispatch } = useReduce();
   useEffect(() => {
     dispatch({ type: "OFFER", payload: 0 });
-    dispatch({ type: "NEW", payload: false });
-    dispatch({ type: "MATERIAL", payload: "accesories" });
+    dispatch({ type: "MATERIAL", payload: "All" });
+    dispatch({ type: "NEW", payload: true });
   }, []);
   return (
     <>
-      <Product
+      <Products
         filteredData={filteredData}
         Add_to_cart_button={Add_to_cart_button}
         Add_to_wishlist_button={Add_to_wishlist_button}

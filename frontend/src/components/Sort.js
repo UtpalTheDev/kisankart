@@ -1,6 +1,6 @@
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 
-export default function Sort({ setshowsort }) {
+export function Sort({ setshowsort }) {
   let { sortBy, dispatch } = useReduce();
   return (
     <>

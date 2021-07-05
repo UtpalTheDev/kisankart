@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useReduce } from "./Reducer-context";
-import Filter from "./Filter";
-import Sort from "./Sort";
+import { useReduce } from "../Reducer-context/Reducer-context";
+import { Filter, Sort } from "../components";
+// import Sort from "./Sort";
 import { Link } from "react-router-dom";
 
-export default function Products({
+export function Products({
   filteredData,
   Add_to_cart_button,
   Add_to_wishlist_button

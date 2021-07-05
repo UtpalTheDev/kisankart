@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useReduce } from "./Reducer-context";
+import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
-import Product from "./Products";
-export default function Tenpercent({
+import { Products } from "./Products";
+export function Twentypercent({
   filteredData,
   Add_to_cart_button,
   Add_to_wishlist_button
@@ -11,11 +11,11 @@ export default function Tenpercent({
   useEffect(() => {
     dispatch({ type: "MATERIAL", payload: "All" });
     dispatch({ type: "NEW", payload: false });
-    dispatch({ type: "OFFER", payload: 10 });
+    dispatch({ type: "OFFER", payload: 20 });
   }, []);
   return (
     <>
-      <Product
+      <Products
         filteredData={filteredData}
         Add_to_cart_button={Add_to_cart_button}
         Add_to_wishlist_button={Add_to_wishlist_button}
