@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useReduce } from "../Reducer-context/Reducer-context";
-import { Link } from "react-router-dom";
 import { Products } from "./Products";
-export function Fertilizer({
+export function Accessories({
   filteredData,
   Add_to_cart_button,
   Add_to_wishlist_button
@@ -11,7 +10,7 @@ export function Fertilizer({
   useEffect(() => {
     dispatch({ type: "OFFER", payload: 0 });
     dispatch({ type: "NEW", payload: false });
-    dispatch({ type: "MATERIAL", payload: "fertilizer" });
+    dispatch({ type: "MATERIAL", payload: "accesories" });
   }, []);
   return (
     <>

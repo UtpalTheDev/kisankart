@@ -2,7 +2,6 @@ import { useReduce } from "../Reducer-context/Reducer-context";
 import { Link } from "react-router-dom";
 
 export function Home() {
-  let { dispatch } = useReduce();
   return (
     <>
       <div className="round-category">

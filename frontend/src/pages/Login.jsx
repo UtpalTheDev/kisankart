@@ -1,48 +1,31 @@
 import { useLogin } from "../Reducer-context/LoginContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import treebanner from "../assets/treebanner.png";
 import { useReduce } from "../Reducer-context/Reducer-context";
-
-export function Signup() {
-  let { isUserLogIn } = useLogin();
-  let { dispatch } = useReduce();
-  let [error, setError] = useState("");
-  const [userName, setUserName] = useState("");
+export function Login() {
+  let { isUserLogIn, LoginWithCredentials } = useLogin();
+  const { dispatch } = useReduce();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
   let { state } = useLocation();
-  console.log("form", state);
-
+  let [error, setError] = useState("");
   useEffect(() => {
     if (isUserLogIn) {
       navigate(state?.from ? state.from : "/", { replace: true });
     }
   }, [isUserLogIn]);
 
-  async function signupHandler() {
-    try {
-      dispatch({ type: "LOAD", payload: true });
-      let response = await axios.post(
-        "https://ecomm-demo-1.utpalpati.repl.co/signup",
-        { user: { userName, email, password } }
-      );
-      if (response.status === 200) {
-        setError("");
-        navigate("/login");
-      }
-      dispatch({ type: "LOAD", payload: false });
-    } catch (error) {
-      setError(error.response.data.message);
-      dispatch({ type: "LOAD", payload: false });
-      console.log("signuphandler error");
-    }
+  async function LoginHandler() {
+    dispatch({ type: "LOAD", payload: true });
+    let errorpassed = await LoginWithCredentials(email, password);
+    setError(errorpassed);
+    dispatch({ type: "LOAD", payload: false });
   }
   return (
-    <div className="signup">
-      <div className="signup-sideimg">
+    <div className="login">
+      <div className="login-sideimg">
         {" "}
         <img
           src={treebanner}
@@ -52,26 +35,15 @@ export function Signup() {
       </div>
 
       <div className="form-container">
-        <h3>Signup</h3>
+        <h3>Login</h3>
 
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            signupHandler();
+            LoginHandler();
           }}
           className="form"
         >
-          <label class="input md">
-            <input
-              type="text"
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
-              class="input-text"
-              required
-            />
-            <span class="placeholder">Name</span>
-          </label>
           <label class="input md">
             <input
               type="email"
@@ -92,14 +64,14 @@ export function Signup() {
               class="input-text"
               required
             />
-            <span class="placeholder">password</span>
+            <span class="placeholder">Password</span>
           </label>
           <div className="form-action">
             <button class="secondary-button md">
-              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
             </button>
             <button type="submit" class="secondary-button md">
-              Signup
+              Login
             </button>
           </div>
         </form>

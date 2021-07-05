@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useReduce } from "../Reducer-context/Reducer-context";
 import { Filter, Sort } from "../components";
-// import Sort from "./Sort";
 import { Link } from "react-router-dom";
 
 export function Products({
@@ -10,7 +9,6 @@ export function Products({
   Add_to_wishlist_button
 }) {
   let {
-    wishlist,
     sortBy,
     dispatch,
     showInventoryAll,
@@ -24,7 +22,6 @@ export function Products({
   let rangefilteredData = filteredData.filter(
     (item) => item.price <= Number(range)
   );
-  console.log("sortby", sortBy);
 
   return (
     <>

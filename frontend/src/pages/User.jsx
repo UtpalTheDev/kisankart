@@ -4,7 +4,7 @@ import { useLogin } from "../Reducer-context/LoginContext";
 import { useReduce } from "../Reducer-context/Reducer-context";
 
 export function User() {
-  const { logout, isUserLogIn } = useLogin();
+  const { logout } = useLogin();
   const { dispatch, user } = useReduce();
 
   useEffect(() => {
@@ -16,9 +16,7 @@ export function User() {
         );
         dispatch({ type: "USER", payload: response.data });
         dispatch({ type: "LOAD", payload: false });
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     })();
   }, []);
   return (

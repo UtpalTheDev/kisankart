@@ -13,23 +13,6 @@ import {
   useLocation
 } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-// import Products from "./Products";
-// import Wishlist from "./Wishlist";
-// import Cart from "./Cart";
-// import Home from "./Home";
-// import Seed from "./Seed";
-// import Fertilizer from "./Fertilizer";
-// import Pesticide from "./Pesticide";
-// import Accesories from "./Accesories";
-// import New from "./New";
-// import Sixpercent from "./Sixpercent";
-// import Twentypercent from "./Twentypercent";
-// import Fifteenpercent from "./Fifteenpercent";
-// import Tenpercent from "./Tenpercent";
-// import ProductPage from "./ProductPage";
-// import Login from "./Login";
-// import User from "./User";
-// import Signup from "./Signup";
 import {
   Products,
   ProductPage,
@@ -81,7 +64,6 @@ export default function App() {
   const { isUserLogIn } = useLogin();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log("loading", loading);
   function getSortedData(productlist, sortBy) {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
       return productlist.sort((a, b) => b.price - a.price);
@@ -147,7 +129,6 @@ export default function App() {
                         );
                         const notify = () => toast.warn(cartmsg);
                         notify();
-                        console.log("delete");
                       } else {
                         let cartmsg = await cart_decrease_call(
                           "https://kisankartbackend.herokuapp.com/cart",
@@ -327,7 +308,6 @@ export default function App() {
           </Link>
         </div>
       </div>
-      {console.log("app.js")}
 
       <Routes>
         <Route path="/" element={<Home />} />

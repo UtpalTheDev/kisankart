@@ -1,12 +1,7 @@
 import { useReduce } from "../Reducer-context/Reducer-context";
 
 export function Filter({ setshowfilter, range, setrange }) {
-  let {
-    sortBy,
-    showInventoryAll,
-    showFastDeliveryOnly,
-    dispatch
-  } = useReduce();
+  let { showInventoryAll, showFastDeliveryOnly, dispatch } = useReduce();
   return (
     <>
       <ul class="list filterlist">
