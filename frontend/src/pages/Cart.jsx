@@ -1,11 +1,14 @@
 import { useReduce } from "../Reducer-context/Reducer-context";
-import { Link } from "react-router-dom";
+import { useLogin } from "../Reducer-context/LoginContext";
+import { Link,useNavigate,useLocation } from "react-router-dom";
 import { cart_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
-
-export function Cart({ Add_to_wishlist_button, Add_to_cart_button }) {
-  let { cartlist, data, dispatch } = useReduce();
-
+import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
+export function Cart() {
+  let { cartlist, data, dispatch,wishlist } = useReduce();
+  const navigate=useNavigate()
+  const {pathname}=useLocation()
+  const {isUserLogIn}=useLogin()
   let cartdata = cartlist.map((eachitem) => {
     let finddata = data.find((item) => item._id === eachitem.itemId);
     if (finddata) {
@@ -54,9 +57,9 @@ export function Cart({ Add_to_wishlist_button, Add_to_cart_button }) {
                       )}
                     </div>
 
-                    {Add_to_cart_button(item._id, item.inStock)}
+                    {Add_to_cart_button(item._id, item.inStock,cartlist,dispatch,isUserLogIn,navigate,pathname)}
 
-                    {Add_to_wishlist_button(item._id)}
+                    {Add_to_wishlist_button(item._id,wishlist,dispatch,isUserLogIn,navigate,pathname)}
 
                     <button
                       class="cancel"

@@ -1,9 +1,16 @@
 import { useReduce } from "../Reducer-context/Reducer-context";
-import { Link } from "react-router-dom";
+import { Link,useNavigate,useLocation } from "react-router-dom";
+import { useLogin } from "../Reducer-context/LoginContext";
 import { wishlist_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
-export function Wishlist({ Add_to_cart_button }) {
-  let { wishlist, data, dispatch } = useReduce();
+import { Add_to_cart_button} from "../components";
+
+export function Wishlist() {
+  let { wishlist, data, dispatch,cartlist } = useReduce();
+  const {isUserLogIn}=useLogin();
+  const navigate=useNavigate()
+  const {pathname}=useLocation
+
   let wishlistdata = wishlist.map((eachitem) => {
     let finddata = data.find((item) => item._id === eachitem);
     if (finddata) {
@@ -44,7 +51,7 @@ export function Wishlist({ Add_to_cart_button }) {
                     {(item.price - (item.price * item.offer) / 100).toFixed(2)}
                   </div>
 
-                  {Add_to_cart_button(item._id, item.inStock)}
+                  {Add_to_cart_button(item._id, item.inStock,cartlist,dispatch,isUserLogIn,navigate,pathname)}
                   <button
                     class="cancel"
                     onClick={async (event) => {

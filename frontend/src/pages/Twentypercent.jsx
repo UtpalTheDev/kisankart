@@ -3,8 +3,6 @@ import { useReduce } from "../Reducer-context/Reducer-context";
 import { Products } from "./Products";
 export function Twentypercent({
   filteredData,
-  Add_to_cart_button,
-  Add_to_wishlist_button
 }) {
   let { dispatch } = useReduce();
   useEffect(() => {
@@ -16,8 +14,6 @@ export function Twentypercent({
     <>
       <Products
         filteredData={filteredData}
-        Add_to_cart_button={Add_to_cart_button}
-        Add_to_wishlist_button={Add_to_wishlist_button}
       />
     </>
   );

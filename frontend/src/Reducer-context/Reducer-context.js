@@ -12,8 +12,7 @@ const Reducercontext = createContext();
 
 export function ReducerProvider({ children }) {
   const [data, setdata] = useState([]);
-  const { token, isUserLogIn } = useLogin();
-  //console.log("42", data);
+  const { isUserLogIn } = useLogin();
   const [
     {
       user,
@@ -47,27 +46,22 @@ export function ReducerProvider({ children }) {
 
   useEffect(() => {
     (async function () {
-      //const { data } = await axios.get("/api/products");
       try {
         dispatch({ type: "LOAD", payload: true });
-        console.log("11111");
         const { data } = await axios.get(
           "https://kisankartbackend.herokuapp.com/product"
         );
 
-        // console.log("product data", data);
         if (isUserLogIn) {
           dispatch({ type: "LOAD", payload: true });
 
           const cart = await axios.get(
             "https://kisankartbackend.herokuapp.com/cart"
           );
-          //console.log("cart data", cart.data.items);
 
           const wishlist = await axios.get(
             "https://kisankartbackend.herokuapp.com/wishlist"
           );
-          //console.log("wishlist data", wishlist.data.items);
 
           dispatch({
             type: "LOAD_CART",
@@ -114,13 +108,10 @@ export function useReduce() {
 }
 
 export function reducer(state, action) {
-  //console.log("reducer fn");
 
   switch (action.type) {
     case "LOAD":
       return { ...state, loading: action.payload };
-    case "ROUTE":
-      return { ...state, route: action.payload };
 
     case "USER":
       return {
@@ -173,7 +164,6 @@ export function reducer(state, action) {
       if (
         state.cartlist.find((item) => item.itemId === action.payload).qty === 1
       ) {
-        console.log("in del");
         return {
           ...state,
           cartlist: state.cartlist.filter(

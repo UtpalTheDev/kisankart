@@ -35,14 +35,6 @@ import {
 } from "./pages";
 import { useLogin } from "./Reducer-context/LoginContext";
 
-import {
-  cart_add_call,
-  cart_decrease_call,
-  cart_remove_call,
-  wishlist_add_call,
-  wishlist_remove_call,
-  cart_increase_call
-} from "./api/ServerRequest";
 /*---------------------APP------------------------------*/
 
 export default function App() {
@@ -61,7 +53,6 @@ export default function App() {
     dispatch,
     loading
   } = useReduce();
-  const { isUserLogIn } = useLogin();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   function getSortedData(productlist, sortBy) {
@@ -110,153 +101,6 @@ export default function App() {
     showNew
   });
 
-  function Add_to_cart_button(id, inStock) {
-    return cartlist.reduce(
-      (returnobj, item) => {
-        if (item.itemId === id && item.qty !== 0) {
-          return (
-            <>
-              <div className="added_to_cart">
-                <button
-                  onClick={async (event) => {
-                    event.preventDefault();
-                    if (isUserLogIn) {
-                      if (item.qty === 1) {
-                        let cartmsg = await cart_remove_call(
-                          "https://kisankartbackend.herokuapp.com/cart",
-                          { itemId: id },
-                          dispatch
-                        );
-                        const notify = () => toast.warn(cartmsg);
-                        notify();
-                      } else {
-                        let cartmsg = await cart_decrease_call(
-                          "https://kisankartbackend.herokuapp.com/cart",
-                          {
-                            items: { itemId: id, qty: item.qty - 1 }
-                          },
-                          dispatch
-                        );
-                        const notify = () => toast.warn(cartmsg);
-                        notify();
-                      }
-                    } else {
-                      navigate("/login");
-                    }
-                  }}
-                >
-                  -
-                </button>
-                {item.qty}
-
-                <button
-                  onClick={async (event) => {
-                    event.preventDefault();
-                    if (isUserLogIn) {
-                      let cartmsg = await cart_increase_call(
-                        "https://kisankartbackend.herokuapp.com/cart",
-                        {
-                          items: { itemId: id, qty: item.qty + 1 }
-                        },
-                        dispatch
-                      );
-                      const notify = () => toast.success(cartmsg);
-                      notify();
-                    } else {
-                      navigate("/login");
-                    }
-                  }}
-                >
-                  +
-                </button>
-              </div>
-            </>
-          );
-        }
-        return returnobj;
-      },
-      <button
-        class="cart"
-        style={{
-          cursor: inStock ? "pointer" : "not-allowed",
-          pointerEvents: inStock ? "auto" : "none"
-        }}
-        onClick={async (event) => {
-          event.preventDefault();
-          if (isUserLogIn) {
-            let cartmsg = await cart_add_call(
-              "https://kisankartbackend.herokuapp.com/cart",
-              {
-                items: { itemId: id, qty: 1 }
-              },
-              dispatch
-            );
-            const notify = () => toast.success(cartmsg);
-            notify();
-          } else {
-            navigate("/login", { state: { from: pathname } });
-          }
-        }}
-      >
-        {inStock ? "Add to Bag" : "Out of Stock"}
-      </button>
-    );
-  }
-
-  function Add_to_wishlist_button(id) {
-    return wishlist.reduce(
-      (returnobj, item) => {
-        if (item === id) {
-          return (
-            <>
-              <button
-                class="wish"
-                onClick={async (event) => {
-                  event.preventDefault();
-                  if (isUserLogIn) {
-                    let wishlistmsg = await wishlist_remove_call(
-                      "https://kisankartbackend.herokuapp.com/wishlist",
-                      { itemId: id },
-                      dispatch
-                    );
-                    const notify = () => toast.warn(wishlistmsg);
-                    notify();
-                  } else {
-                    navigate("/login");
-                  }
-                }}
-              >
-                <i class="fas fa-heart" style={{ color: "rgb(186, 0, 0)" }}></i>
-              </button>
-            </>
-          );
-        }
-        return returnobj;
-      },
-      <button
-        class="wish"
-        onClick={async (event) => {
-          event.preventDefault();
-          if (isUserLogIn) {
-            let wishlistmsg = await wishlist_add_call(
-              "https://kisankartbackend.herokuapp.com/wishlist",
-              {
-                itemId: id
-              },
-              dispatch
-            );
-            const notify = () => toast.success(wishlistmsg);
-            notify();
-          } else {
-            navigate("/login");
-          }
-        }}
-      >
-        <i class="far fa-heart"></i>
-      </button>
-    );
-  }
-
   return (
     <div className="App">
       <div className="ecom-navbar">
@@ -270,7 +114,6 @@ export default function App() {
           <Link to="/cart">
             <button
               class="icon-button lg"
-              onClick={() => dispatch({ type: "ROUTE", payload: "cart" })}
             >
               <i class="fas fa-shopping-cart"></i>
               {cartlist.filter((item) => item.qty !== 0).length > 0 ? (
@@ -288,7 +131,6 @@ export default function App() {
           <Link to="/wishlist">
             <button
               class="icon-button lg"
-              onClick={() => dispatch({ type: "ROUTE", payload: "wishlist" })}
             >
               <i class="far fa-heart"></i>
               {wishlist.length > 0 ? (
@@ -301,7 +143,6 @@ export default function App() {
           <Link to="/user">
             <button
               class="icon-button lg"
-              onClick={() => dispatch({ type: "ROUTE", payload: "user" })}
             >
               <i class="far fa-user"></i>
             </button>
@@ -317,8 +158,6 @@ export default function App() {
           element={
             <Products
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -328,8 +167,6 @@ export default function App() {
           element={
             <Seed
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -339,8 +176,6 @@ export default function App() {
           element={
             <Fertilizer
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -350,8 +185,6 @@ export default function App() {
           element={
             <Pesticide
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -361,8 +194,6 @@ export default function App() {
           element={
             <Accessories
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -371,8 +202,6 @@ export default function App() {
           element={
             <New
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -381,8 +210,6 @@ export default function App() {
           element={
             <Sixpercent
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -391,8 +218,6 @@ export default function App() {
           element={
             <Twentypercent
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
@@ -400,9 +225,7 @@ export default function App() {
           path="/15"
           element={
             <Fifteenpercent
-              filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
+              filteredData={filteredData}  
             />
           }
         />
@@ -411,23 +234,18 @@ export default function App() {
           element={
             <Tenpercent
               filteredData={filteredData}
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
             />
           }
         />
         <PrivateRoute
           path="/cart"
           element={
-            <Cart
-              Add_to_wishlist_button={Add_to_wishlist_button}
-              Add_to_cart_button={Add_to_cart_button}
-            />
+            <Cart />
           }
         />
         <PrivateRoute
           path="/wishlist"
-          element={<Wishlist Add_to_cart_button={Add_to_cart_button} />}
+          element={<Wishlist />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -437,10 +255,7 @@ export default function App() {
         <Route
           path="/product/:productid"
           element={
-            <ProductPage
-              Add_to_cart_button={Add_to_cart_button}
-              Add_to_wishlist_button={Add_to_wishlist_button}
-            />
+            <ProductPage/>
           }
         />
 

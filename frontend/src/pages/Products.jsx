@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { useReduce } from "../Reducer-context/Reducer-context";
+import { useLogin } from "../Reducer-context/LoginContext";
 import { Filter, Sort } from "../components";
-import { Link } from "react-router-dom";
+import { Link,useNavigate,useLocation } from "react-router-dom";
+import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
 
 export function Products({
-  filteredData,
-  Add_to_cart_button,
-  Add_to_wishlist_button
+  filteredData
 }) {
   let {
     sortBy,
     dispatch,
     showInventoryAll,
-    showFastDeliveryOnly
+    showFastDeliveryOnly,
+    cartlist,
+    wishlist
   } = useReduce();
-
+  const {isUserLogIn}=useLogin()
   const [showsort, setshowsort] = useState(false);
   const [showfilter, setshowfilter] = useState(false);
   const [range, setrange] = useState(12000);
-
+  const navigate=useNavigate()
+  const {pathname}=useLocation()
   let rangefilteredData = filteredData.filter(
     (item) => item.price <= Number(range)
   );
@@ -150,8 +153,8 @@ export function Products({
                     <div class="price">
                       Rs. {(price - (price * offer) / 100).toFixed(2)}
                     </div>
-                    {Add_to_cart_button(_id, inStock)}
-                    {Add_to_wishlist_button(_id)}
+                    {Add_to_cart_button(_id, inStock,cartlist,dispatch,isUserLogIn,navigate,pathname)}
+                    {Add_to_wishlist_button(_id,wishlist,dispatch,isUserLogIn,navigate,pathname)}
                   </div>
                 </Link>
               )
