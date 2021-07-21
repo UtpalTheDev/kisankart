@@ -21,7 +21,7 @@ export function Wishlist() {
 
   return (
     <>
-      <h5>Wishlist</h5>
+      <div style={{paddingLeft:"0.5rem"}}><h3>Wishlist</h3></div>
       <div className="items">
         {wishlistdata.map((item) => {
           return (

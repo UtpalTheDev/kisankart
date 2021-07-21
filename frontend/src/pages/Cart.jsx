@@ -1,14 +1,18 @@
 import { useReduce } from "../Reducer-context/Reducer-context";
 import { useLogin } from "../Reducer-context/LoginContext";
 import { Link,useNavigate,useLocation } from "react-router-dom";
+import {useState} from "react"
 import { cart_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
 import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
+import {Payment} from "../Payment/Payment"
 export function Cart() {
   let { cartlist, data, dispatch,wishlist } = useReduce();
   const navigate=useNavigate()
   const {pathname}=useLocation()
   const {isUserLogIn}=useLogin()
+  const [modal,setModal]=useState(false)
+  
   let cartdata = cartlist.map((eachitem) => {
     let finddata = data.find((item) => item._id === eachitem.itemId);
     if (finddata) {
@@ -16,9 +20,19 @@ export function Cart() {
     }
     return {};
   });
+
+  const checkOutPrice=cartdata
+  .reduce(
+    (total, prod) =>
+      total +
+      prod.qty * (prod.price - (prod.price * prod.offer) / 100),
+    0
+  )
+  .toFixed(2);
   return (
     <>
-      <h5>Cart</h5>
+    <div style={{paddingLeft:"0.5rem"}}><h3>Cart</h3></div>
+      
 
       <div className="items">
         {cartdata
@@ -86,17 +100,16 @@ export function Cart() {
       </div>
       <div className="checkout">
         <div>
-          {`Total Price- Rs. ${cartdata
-            .reduce(
-              (total, prod) =>
-                total +
-                prod.qty * (prod.price - (prod.price * prod.offer) / 100),
-              0
-            )
-            .toFixed(2)}`}
+          {`Total Price- Rs. ${checkOutPrice}`}
         </div>
         <div>
-          <button class="primary-button lg">Checkout</button>
+          <button class="primary-button lg" onClick={()=>setModal(true)}>Checkout</button>
+        </div>
+        <div style={{display:modal? `flex`:`none`, position:"fixed", top:0, width:"100vw", height:"100vh", background:"white",alignItems:"center", justifyContent:"center" }}>
+          <div  style={{width:"100%",maxWidth: "700px",
+    minWidth: "400px" }}>
+            {modal && <Payment price={checkOutPrice} setModal={setModal}/>}</div>
+        
         </div>
       </div>
     </>
