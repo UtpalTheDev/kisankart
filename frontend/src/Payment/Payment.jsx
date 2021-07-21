@@ -53,7 +53,7 @@ const Field = ({
       {label}
     </label>
     <input
-      className={styles.FormRowInput}
+      className={styles.FormRowInput, styles.inputAndButton}
       id={id}
       type={type}
       placeholder={placeholder}
@@ -92,7 +92,7 @@ const ErrorMessage = ({ children }) => (
 );
 
 const ResetButton = ({ onClick }) => (
-  <button type="button" className={styles.ResetButton} onClick={onClick}>
+  <button type="button" className={styles.ResetButton, styles.inputAndButton} onClick={onClick}>
     <svg width="32px" height="32px" viewBox="0 0 32 32">
       <path
         fill="#FFF"
@@ -102,7 +102,7 @@ const ResetButton = ({ onClick }) => (
   </button>
 );
 
-const CheckoutForm = () => {
+const CheckoutForm = ({price,setModal}) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -220,8 +220,9 @@ const CheckoutForm = () => {
       </fieldset>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        Pay $25
+        {`Pay- ${price} Rs`}
       </SubmitButton>
+
     </form>
   );
 };
@@ -239,17 +240,15 @@ const ELEMENTS_OPTIONS = {
 const stripePromise = loadStripe('pk_test_51JFZI7SERJtwiYIjUkgfUefbLbmi5RRfNHUFOBnGXmE4I94cr7X1SU1YWx2XC2hnRUJsEpsehFFhJmGikChUWZHh0028hh6ag0');
 
 
-export const Payment = () => {
-
+export const Payment = ({price,setModal}) => {
+console.log(price)
   return (
-    <div
-          id="payment"
-          className="modal w-full flex flex-col "
-        >
+  <div>  
 <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-        <CheckoutForm />
+        <CheckoutForm price={price} setModal={setModal}/>
       </Elements>
-    </div>
+      <button className="secondary-button lg" style={{width:"calc(100% - 30px)",margin:"15px"}} onClick={()=>setModal(false)}>Back to Cart</button>
+  </div>    
   )
   
  };
