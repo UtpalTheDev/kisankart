@@ -8,6 +8,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import { Payment } from "./Payment/Payment";
 import { Navbar } from "./components";
 import PrivateRoute from "./PrivateRoute";
 import {
@@ -151,7 +152,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <PrivateRoute path="/user" element={<User />} />
-
+        <Route path="/payment" element={<Payment/>}/>
         <Route
           path="/product/:productid" element={<ProductPage/>}/>
 

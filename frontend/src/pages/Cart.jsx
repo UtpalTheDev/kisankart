@@ -4,11 +4,13 @@ import { Link,useNavigate,useLocation } from "react-router-dom";
 import { cart_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
 import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
+
 export function Cart() {
   let { cartlist, data, dispatch,wishlist } = useReduce();
   const navigate=useNavigate()
   const {pathname}=useLocation()
   const {isUserLogIn}=useLogin()
+  const [modal,setModal]=useState(false)
   let cartdata = cartlist.map((eachitem) => {
     let finddata = data.find((item) => item._id === eachitem.itemId);
     if (finddata) {
