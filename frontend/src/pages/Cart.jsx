@@ -39,20 +39,21 @@ export function Cart() {
           .filter((item) => item.qty > 0)
           .map((item) => {
             return (
-              <>
+              
                 <Link
+                  key={item._id}
                   to={`/product/${item._id}`}
                   style={{ width: "40%", maxWidth: "210px" }}
                 >
-                  <div class="cards-t1">
+                  <div className="cards-t1">
                     <img
-                      class="cards-t1-img"
+                      className="cards-t1-img"
                       src={item.image}
                       alt={item.name}
                     />
 
                     <div
-                      class="title"
+                      className="title"
                       style={{
                         overflow: "hidden",
                         textOverflow: "...",
@@ -61,10 +62,10 @@ export function Cart() {
                     >
                       {item.name}
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                       {item.inStock ? "InStock" : "Out of Stock"}
                     </div>
-                    <div class="price">
+                    <div className="price">
                       Rs:{" "}
                       {(item.price - (item.price * item.offer) / 100).toFixed(
                         2
@@ -76,7 +77,7 @@ export function Cart() {
                     {Add_to_wishlist_button(item._id,wishlist,dispatch,isUserLogIn,navigate,pathname)}
 
                     <button
-                      class="cancel"
+                      className="cancel"
                       onClick={async (event) => {
                         event.preventDefault();
                         let cartmsg = await cart_remove_call(
@@ -94,7 +95,7 @@ export function Cart() {
                     </button>
                   </div>
                 </Link>
-              </>
+              
             );
           })}
       </div>
@@ -103,7 +104,7 @@ export function Cart() {
           {`Total Price- Rs. ${checkOutPrice}`}
         </div>
         <div>
-          <button class="primary-button lg" onClick={()=>setModal(true)}>Checkout</button>
+          <button className="primary-button lg" onClick={()=>setModal(true)}>Checkout</button>
         </div>
         <div style={{display:modal? `flex`:`none`, position:"fixed", top:0, width:"100vw", height:"100vh", background:"white",alignItems:"center", justifyContent:"center" }}>
           <div  style={{width:"100%",maxWidth: "700px",

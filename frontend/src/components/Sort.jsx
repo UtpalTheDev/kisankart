@@ -5,7 +5,7 @@ export function Sort({ setshowsort }) {
   return (
     <>
       <div className="sortblock">
-        <ul class="list">
+        <ul className="list">
           <li className="mobile-sortlist">
             <div
               style={{

@@ -4,7 +4,7 @@ export function Filter({ setshowfilter, range, setrange }) {
   let { showInventoryAll, showFastDeliveryOnly, dispatch } = useReduce();
   return (
     <>
-      <ul class="list filterlist">
+      <ul className="list filterlist">
         <li>
           <input
             type="checkbox"
@@ -41,7 +41,7 @@ export function Filter({ setshowfilter, range, setrange }) {
           {`Rs${range}`}
         </li>
         <button
-          class="primary-button lg filterapply"
+          className="primary-button lg filterapply"
           onClick={() => setshowfilter((prev) => !prev)}
         >
           Apply

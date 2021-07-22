@@ -25,16 +25,17 @@ export function Wishlist() {
       <div className="items">
         {wishlistdata.map((item) => {
           return (
-            <>
+            
               <Link
+                key={item._id}
                 to={`/product/${item._id}`}
                 style={{ width: "40%", maxWidth: "210px" }}
               >
-                <div class="cards-t1">
-                  <img class="cards-t1-img" src={item.image} alt={item.name} />
+                <div className="cards-t1">
+                  <img className="cards-t1-img" src={item.image} alt={item.name} />
 
                   <div
-                    class="title"
+                    className="title"
                     style={{
                       overflow: "hidden",
                       textOverflow: "...",
@@ -43,17 +44,17 @@ export function Wishlist() {
                   >
                     {item.name}
                   </div>
-                  <div class="desc">
+                  <div className="desc">
                     {item.inStock ? "InStock" : "Out of Stock"}
                   </div>
-                  <div class="price">
+                  <div className="price">
                     Rs:{" "}
                     {(item.price - (item.price * item.offer) / 100).toFixed(2)}
                   </div>
 
                   {Add_to_cart_button(item._id, item.inStock,cartlist,dispatch,isUserLogIn,navigate,pathname)}
                   <button
-                    class="cancel"
+                    className="cancel"
                     onClick={async (event) => {
                       event.preventDefault();
                       let wishlistmsg = await wishlist_remove_call(
@@ -69,7 +70,7 @@ export function Wishlist() {
                   </button>
                 </div>
               </Link>
-            </>
+            
           );
         })}
       </div>

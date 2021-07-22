@@ -18,7 +18,7 @@ export function Add_to_wishlist_button(id,wishlist,dispatch,isUserLogIn,navigate
           return (
             <>
               <button
-                class="wish"
+                className="wish"
                 onClick={async (event) => {
                   event.preventDefault();
                   if (isUserLogIn) {
@@ -34,7 +34,7 @@ export function Add_to_wishlist_button(id,wishlist,dispatch,isUserLogIn,navigate
                   }
                 }}
               >
-                <i class="fas fa-heart" style={{ color: "rgb(186, 0, 0)" }}></i>
+                <i className="fas fa-heart" style={{ color: "rgb(186, 0, 0)" }}></i>
               </button>
             </>
           );
@@ -42,7 +42,7 @@ export function Add_to_wishlist_button(id,wishlist,dispatch,isUserLogIn,navigate
         return returnobj;
       },
       <button
-        class="wish"
+        className="wish"
         onClick={async (event) => {
           event.preventDefault();
           if (isUserLogIn) {
@@ -60,7 +60,7 @@ export function Add_to_wishlist_button(id,wishlist,dispatch,isUserLogIn,navigate
           }
         }}
       >
-        <i class="far fa-heart"></i>
+        <i className="far fa-heart"></i>
       </button>
     );
   }
