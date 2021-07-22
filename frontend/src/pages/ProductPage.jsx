@@ -86,25 +86,26 @@ export function ProductPage() {
                     return (
                       <>
                         <Link
+                          key={_id}
                           to={`/product/${_id}`}
                           style={{ width: "40%", maxWidth: "210px" }}
                         >
-                          <div class="cards-t1">
-                            <div class="ratewrapper">
+                          <div className="cards-t1">
+                            <div className="ratewrapper">
                               <img
-                                class="cards-t1-img"
+                                className="cards-t1-img"
                                 src={image}
                                 alt={name}
                               />
                               <div className="rate">
                                 {ratings}
-                                <i class="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
                               </div>
                             </div>
-                            {isnew ? <div class="cards-badge">New</div> : ""}
+                            {isnew ? <div className="cards-badge">New</div> : ""}
 
                             <div
-                              class="title"
+                              className="title"
                               style={{
                                 overflow: "hidden",
                                 textOverflow: "..2.",
@@ -113,15 +114,15 @@ export function ProductPage() {
                             >
                               {name}
                             </div>
-                            <div class="desc">
+                            <div className="desc">
                               {fastDelivery
                                 ? "Fast Delivery"
                                 : "3 Days Minimum"}
                             </div>
-                            <span class="cards-t1-oldprice">Rs. {price}</span>
-                            <span class="cards-t1-offer">{offer}% off</span>
+                            <span className="cards-t1-oldprice">Rs. {price}</span>
+                            <span className="cards-t1-offer">{offer}% off</span>
 
-                            <div class="price">
+                            <div className="price">
                               Rs. {(price - (price * offer) / 100).toFixed(2)}
                             </div>
                             {Add_to_cart_button(_id, inStock,cartlist,dispatch,isUserLogIn,navigate,pathname)}

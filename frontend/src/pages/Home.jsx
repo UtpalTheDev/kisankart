@@ -7,7 +7,7 @@ export function Home() {
       <div className="round-category">
         <Link to="seeds" className="Link">
           <div>
-            <div class="round-img">
+            <div className="round-img">
               <img
                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.jj12xIqw1qxhI1oxVJo1CAHaHa%26pid%3DApi&f=1"
                 alt="seeds"
@@ -19,7 +19,7 @@ export function Home() {
 
         <Link to="fertilizers" className="Link">
           <div>
-            <div class="round-img">
+            <div className="round-img">
               <img
                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.BVTE833H8QNL4ITF_duqqAAAAA%26pid%3DApi&f=1"
                 alt="fertilizers"
@@ -32,7 +32,7 @@ export function Home() {
         <Link to="pesticides" className="Link">
           <div>
             {" "}
-            <div class="round-img">
+            <div className="round-img">
               <img
                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Q7zt0mC6Djg3KRkAtEhqIAHaHa%26pid%3DApi&f=1"
                 alt="pesticides"
@@ -46,7 +46,7 @@ export function Home() {
           {" "}
           <div>
             {" "}
-            <div class="round-img">
+            <div className="round-img">
               <img
                 src="http://3.bp.blogspot.com/-fqclgZepv6E/VieyKaBK1fI/AAAAAAAAAHI/EJw2uVrDo4U/s1600/20981075-Gardening-tools-isolated-on-white-background-Garden-equipment-silhouette-set--Stock-Vector.jpg"
                 alt="machinery"
@@ -58,7 +58,7 @@ export function Home() {
       </div>
       <Link to="/new-product" className="Link">
         {" "}
-        <div class="responsive-img">
+        <div className="responsive-img">
           <img
             alt="banner"
             src="https://assets.myntassets.com/w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2021/3/29/a48772c8-cdb9-4ee7-a83e-1961320854901617038432656-Ugadi-Desktop-MainBanner.jpg"
@@ -66,7 +66,7 @@ export function Home() {
         </div>
       </Link>
 
-      <div class="percentage-category">
+      <div className="percentage-category">
         <Link to="/20" className="Link">
           <div>20% Off</div>
         </Link>

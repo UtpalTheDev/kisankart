@@ -75,7 +75,7 @@ export function Add_to_cart_button(id, inStock,cartlist,dispatch,isUserLogIn,nav
         return returnobj;
       },
       <button
-        class="cart"
+        className="cart"
         style={{
           cursor: inStock ? "pointer" : "not-allowed",
           pointerEvents: inStock ? "auto" : "none"

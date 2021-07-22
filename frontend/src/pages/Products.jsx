@@ -30,30 +30,30 @@ export function Products({
     <>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         <div className="sort-filter">
-          <button onClick={() => setshowsort((prev) => !prev)} class="xl-2">
-            <i class="fas fa-sort"></i>
+          <button onClick={() => setshowsort((prev) => !prev)} className="xl-2">
+            <i className="fas fa-sort"></i>
             Sort{" "}
           </button>
-          <button onClick={() => setshowfilter((prev) => !prev)} class="xl-2">
-            <i class="fas fa-filter"></i>
+          <button onClick={() => setshowfilter((prev) => !prev)} className="xl-2">
+            <i className="fas fa-filter"></i>
             Filter
           </button>
         </div>
         <div className="productgrid">
           <div className="action">
             Sort
-            <ul class="list">
+            <ul className="list">
               <li>
                 <input
                   type="radio"
                   name="sort1"
                   id="PRICE_HIGH_TO_LOW"
                   checked={sortBy === "PRICE_HIGH_TO_LOW"}
-                  onClick={() => {
+                  onChange={() => {
                     dispatch({ type: "SORT", payload: "PRICE_HIGH_TO_LOW" });
                   }}
                 />
-                <label for="PRICE_HIGH_TO_LOW">Price high to low</label>
+                <label htmlFor="PRICE_HIGH_TO_LOW">Price high to low</label>
               </li>
               <li>
                 <input
@@ -61,15 +61,15 @@ export function Products({
                   name="sort1"
                   id="PRICE_LOW_TO_HIGH"
                   checked={sortBy === "PRICE_LOW_TO_HIGH"}
-                  onClick={() => {
+                  onChange={() => {
                     dispatch({ type: "SORT", payload: "PRICE_LOW_TO_HIGH" });
                   }}
                 />
-                <label for="PRICE_LOW_TO_HIGH">Price low to high</label>
+                <label htmlFor="PRICE_LOW_TO_HIGH">Price low to high</label>
               </li>
             </ul>
             Filter
-            <ul class="list ">
+            <ul className="list ">
               <li>
                 <input
                   type="checkbox"
@@ -121,21 +121,22 @@ export function Products({
                 isnew
               }) => (
                 <Link
+                  key={_id}
                   to={`/product/${_id}`}
                   style={{ width: "40%", maxWidth: "210px" }}
                 >
-                  <div class="cards-t1">
-                    <div class="ratewrapper">
-                      <img class="cards-t1-img" src={image} alt={name} />
+                  <div className="cards-t1">
+                    <div className="ratewrapper">
+                      <img className="cards-t1-img" src={image} alt={name} />
                       <div className="rate">
                         {ratings}
-                        <i class="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
                       </div>
                     </div>
-                    {isnew ? <div class="cards-badge">New</div> : ""}
+                    {isnew ? <div className="cards-badge">New</div> : ""}
 
                     <div
-                      class="title"
+                      className="title"
                       style={{
                         overflow: "hidden",
                         textOverflow: "..2.",
@@ -144,13 +145,13 @@ export function Products({
                     >
                       {name}
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                       {fastDelivery ? "Fast Delivery" : "3 Days Minimum"}
                     </div>
-                    <span class="cards-t1-oldprice">Rs. {price}</span>
-                    <span class="cards-t1-offer">{offer}% off</span>
+                    <span className="cards-t1-oldprice">Rs. {price}</span>
+                    <span className="cards-t1-offer">{offer}% off</span>
 
-                    <div class="price">
+                    <div className="price">
                       Rs. {(price - (price * offer) / 100).toFixed(2)}
                     </div>
                     {Add_to_cart_button(_id, inStock,cartlist,dispatch,isUserLogIn,navigate,pathname)}

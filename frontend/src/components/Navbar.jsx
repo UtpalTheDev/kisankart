@@ -11,14 +11,14 @@ export function Navbar({cartlist,wishlist}){
             <span>KisanKart</span>
           </div>
         </Link>
-        <div class="navbar">
+        <div className="navbar">
           <Link to="/cart">
             <button
-              class="icon-button lg"
+              className="icon-button lg"
             >
-              <i class="fas fa-shopping-cart"></i>
+              <i className="fas fa-shopping-cart"></i>
               {cartlist.filter((item) => item.qty !== 0).length > 0 ? (
-                <div class="icon-badge">
+                <div className="icon-badge">
                   {cartlist
                     .filter((item) => item.qty !== 0)
                     .reduce((total, item) => total + item.qty, 0)}
@@ -31,11 +31,11 @@ export function Navbar({cartlist,wishlist}){
 
           <Link to="/wishlist">
             <button
-              class="icon-button lg"
+              className="icon-button lg"
             >
-              <i class="far fa-heart"></i>
+              <i className="far fa-heart"></i>
               {wishlist.length > 0 ? (
-                <div class="icon-badge">{wishlist.length}</div>
+                <div className="icon-badge">{wishlist.length}</div>
               ) : (
                 ""
               )}
@@ -43,9 +43,9 @@ export function Navbar({cartlist,wishlist}){
           </Link>
           <Link to="/user">
             <button
-              class="icon-button lg"
+              className="icon-button lg"
             >
-              <i class="far fa-user"></i>
+              <i className="far fa-user"></i>
             </button>
           </Link>
         </div>
