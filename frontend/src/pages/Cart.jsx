@@ -39,7 +39,7 @@ export function Cart() {
           .filter((item) => item.qty > 0)
           .map((item) => {
             return (
-              <>
+              
                 <Link
                   key={item._id}
                   to={`/product/${item._id}`}
@@ -95,7 +95,7 @@ export function Cart() {
                     </button>
                   </div>
                 </Link>
-              </>
+              
             );
           })}
       </div>

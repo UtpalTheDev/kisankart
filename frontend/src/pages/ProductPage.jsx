@@ -84,7 +84,7 @@ export function ProductPage() {
                     offer
                   }) => {
                     return (
-                      <>
+                      
                         <Link
                           key={_id}
                           to={`/product/${_id}`}
@@ -129,7 +129,7 @@ export function ProductPage() {
                             {Add_to_wishlist_button(_id, wishlist,dispatch,isUserLogIn,navigate,pathname)}
                           </div>
                         </Link>
-                      </>
+                      
                     );
                   }
                 )}

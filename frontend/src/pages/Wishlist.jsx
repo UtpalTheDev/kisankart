@@ -25,7 +25,7 @@ export function Wishlist() {
       <div className="items">
         {wishlistdata.map((item) => {
           return (
-            <>
+            
               <Link
                 key={_id}
                 to={`/product/${item._id}`}
@@ -70,7 +70,7 @@ export function Wishlist() {
                   </button>
                 </div>
               </Link>
-            </>
+            
           );
         })}
       </div>
