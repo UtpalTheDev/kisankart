@@ -27,7 +27,7 @@ export function Wishlist() {
           return (
             
               <Link
-                key={_id}
+                key={item._id}
                 to={`/product/${item._id}`}
                 style={{ width: "40%", maxWidth: "210px" }}
               >
