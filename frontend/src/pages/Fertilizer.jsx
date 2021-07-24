@@ -23,4 +23,3 @@ export function Fertilizer({
     </>
   );
 }
-//"https://www.fertilizerseurope.com/wp-content/uploads/2019/08/banner-picture-fertilizer-regulation-e1565796152289.jpg"
