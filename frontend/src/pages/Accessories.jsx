@@ -12,6 +12,10 @@ export function Accessories({
   }, []);
   return (
     <>
+      <div style={{padding:"0 0.3rem"}}>
+        <h3>Accessories</h3>
+        <img src="https://thumbs.dreamstime.com/b/gardening-background-garden-hand-tools-summer-flowers-plant-gray-stone-background-top-view-place-text-banner-67778756.jpg"  className="productpage_banner"/>
+      </div>
       <Products
         filteredData={filteredData}
       />

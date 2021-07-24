@@ -2,6 +2,7 @@ import { useReduce } from "../Reducer-context/Reducer-context";
 import { useLogin } from "../Reducer-context/LoginContext";
 import { Link,useNavigate,useLocation } from "react-router-dom";
 import {useState} from "react"
+import emptyCart from "../assets/emptyCart.svg";
 import { cart_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
 import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
@@ -99,6 +100,7 @@ export function Cart() {
             );
           })}
       </div>
+      { cartdata.length>0 &&
       <div className="checkout">
         <div>
           {`Total Price- Rs. ${checkOutPrice}`}
@@ -113,6 +115,23 @@ export function Cart() {
         
         </div>
       </div>
+      }
+      {
+        cartdata.length===0 && 
+          <div
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              width:"50%",
+              minWidth:"150px",
+              maxWidth:"300px"
+            }}
+          >
+            <img src={emptyCart} style={{borderRadius:"5%",width:"100%" }}/>
+          </div>
+      }
     </>
   );
 }

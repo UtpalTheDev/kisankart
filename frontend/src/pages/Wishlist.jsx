@@ -4,6 +4,8 @@ import { useLogin } from "../Reducer-context/LoginContext";
 import { wishlist_remove_call } from "../api/ServerRequest";
 import { toast } from "react-toastify";
 import { Add_to_cart_button} from "../components";
+import emptyList from "../assets/emptyList.svg";
+
 
 export function Wishlist() {
   let { wishlist, data, dispatch,cartlist } = useReduce();
@@ -74,6 +76,22 @@ export function Wishlist() {
           );
         })}
       </div>
+      {
+        wishlistdata.length===0 &&
+           <div
+              style={{
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,-50%)",
+                width:"50%",
+                minWidth:"150px",
+                maxWidth:"300px"
+              }}
+            >
+              <img src={emptyList} style={{borderRadius:"5%",width:"100%" }}/>
+            </div>
+      }
     </>
   );
 }

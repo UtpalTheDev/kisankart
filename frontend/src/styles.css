@@ -298,7 +298,11 @@ a {
 }
 
 /*-----------------------product page-----------------*/
-
+.productpage_banner{
+  width:100%; 
+  height:350px;
+  border-radius: 1rem;
+}
 .productpage-wrapper {
   display: flex;
   margin-top: 2rem;
@@ -528,6 +532,7 @@ a {
   .productpage-similar {
     margin-top: 8rem;
   }
+ 
 }
 @media only screen and (max-width: 601px) {
   .action {
@@ -542,5 +547,8 @@ a {
   }
   .productpage-image img {
     max-width: 210px;
+  }
+  .productpage_banner{
+    height:150px
   }
 }

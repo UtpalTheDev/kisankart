@@ -2,7 +2,7 @@ import { useLogin } from "../Reducer-context/LoginContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import treebanner from "../assets/treebanner.png";
+import treebanner from "../assets/treebanner.svg";
 import { useReduce } from "../Reducer-context/Reducer-context";
 
 export function Signup() {
