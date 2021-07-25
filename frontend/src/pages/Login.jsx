@@ -6,8 +6,8 @@ import { useReduce } from "../Reducer-context/Reducer-context";
 export function Login() {
   let { isUserLogIn, LoginWithCredentials } = useLogin();
   const { dispatch } = useReduce();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("123456");
   let navigate = useNavigate();
   let { state } = useLocation();
   let [error, setError] = useState("");
@@ -50,6 +50,7 @@ export function Login() {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
+              value={email}
               className="input-text"
               required
             />
@@ -61,21 +62,26 @@ export function Login() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              value={password}
               className="input-text"
               required
             />
             <span className="placeholder">Password</span>
           </label>
+          <div className="sm gray centertxt">Password should contain atleast 6 characters</div>
           <div className="form-action">
-            <button className="secondary-button md">
-              <Link to="/signup">Signup</Link>
-            </button>
             <button type="submit" className="secondary-button md">
               Login
             </button>
           </div>
+          <hr/>
+          <div className="md centertxt">
+          Don't have an account? 
+              <Link to="/signup" style={{color:"blue"}}> Sign Up</Link>
+            </div>
         </form>
         <div style={{ color: "red",paddingBottom:"2rem" }}>{error}</div>
+        
       </div>
     </div>
   );
