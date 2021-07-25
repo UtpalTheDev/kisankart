@@ -86,10 +86,13 @@ export function Wishlist() {
                 transform: "translate(-50%,-50%)",
                 width:"50%",
                 minWidth:"150px",
-                maxWidth:"300px"
+                maxWidth:"300px",
+                textAlign:"center"
               }}
             >
               <img src={emptyList} style={{borderRadius:"5%",width:"100%" }}/>
+              Wishlist Is Empty, Move to
+            <Link to="/" style={{color:"blue"}}> Home Page</Link>
             </div>
       }
     </>

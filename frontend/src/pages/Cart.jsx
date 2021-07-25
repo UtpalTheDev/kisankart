@@ -126,10 +126,13 @@ export function Cart() {
               transform: "translate(-50%,-50%)",
               width:"50%",
               minWidth:"150px",
-              maxWidth:"300px"
+              maxWidth:"300px",
+              textAlign:"center"
             }}
           >
             <img src={emptyCart} style={{borderRadius:"5%",width:"100%" }}/>
+            Cart Is Empty, Move to
+            <Link to="/" style={{color:"blue"}}> Home Page</Link>
           </div>
       }
     </>
