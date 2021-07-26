@@ -189,7 +189,11 @@ export function reducer(state, action) {
           (item) => item.itemId !== action.payload
         )
       };
-
+    case "EMPTY_CARTLIST":
+      return{
+        ...state,
+        cartlist:[]
+      }
     case "ADD_WISH":
       return { ...state, wishlist: [...state.wishlist, action.payload] };
 

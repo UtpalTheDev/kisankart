@@ -74,7 +74,20 @@ export async function cart_remove_call(url, payload, dispatch) {
     return "not able to remove from cart";
   }
 }
-
+export async function cart_empty_call(url, dispatch) {
+  try {
+    let response = await axios.delete(url);
+    if (response.status === 200) {
+      dispatch({
+        type: "EMPTY_CARTLIST"
+        
+      });
+      
+    }
+  } catch (err) {
+    return "not able to remove from cart";
+  }
+}
 export async function wishlist_add_call(url, payload, dispatch) {
   try {
     dispatch({ type: "LOAD", payload: true });
