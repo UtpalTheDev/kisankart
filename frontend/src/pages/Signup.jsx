@@ -2,7 +2,7 @@ import { useLogin } from "../Reducer-context/LoginContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import treebanner from "../assets/treebanner.png";
+import treebanner from "../assets/treebanner.svg";
 import { useReduce } from "../Reducer-context/Reducer-context";
 
 export function Signup() {
@@ -68,8 +68,9 @@ export function Signup() {
               className="input-text"
               required
             />
-            <span className="placeholder">Name</span>
+            <span className="placeholder">User Name</span>
           </label>
+          <div className="sm gray centertxt">User Name should contain atleast 6 characters</div>
           <label className="input md">
             <input
               type="email"
@@ -92,16 +93,19 @@ export function Signup() {
             />
             <span className="placeholder">password</span>
           </label>
+          <div className="sm gray centertxt">Password should contain atleast 6 characters</div>
           <div className="form-action">
-            <button className="secondary-button md">
-              <Link to="/login">Login</Link>
-            </button>
             <button type="submit" className="secondary-button md">
               Signup
             </button>
           </div>
+          <hr/>
+          <div className="md centertxt">
+          Have an account? 
+              <Link to="/login" style={{color:"blue"}}> Log in now</Link>
+            </div>
         </form>
-        <div style={{ color: "red" }}>{error}</div>
+        <div style={{ color: "red",padding:"0.5rem 0" }}>{error}</div>
       </div>
     </div>
   );
