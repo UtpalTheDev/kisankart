@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useReduce } from "../Reducer-context/Reducer-context";
 import { useLogin } from "../Reducer-context/LoginContext";
 import { Filter, Sort } from "../components";
+import noItems from "../assets/noItem.svg";
 import { Link,useNavigate,useLocation } from "react-router-dom";
 import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
 
@@ -107,8 +108,8 @@ export function Products({
               </li>
             </ul>
           </div>
-          <div className="items">
-            {rangefilteredData.map(
+          <div className="items" style={{position:"relative"}}>
+            {rangefilteredData.length>0 ? rangefilteredData.map(
               ({
                 _id,
                 name,
@@ -159,7 +160,19 @@ export function Products({
                   </div>
                 </Link>
               )
-            )}
+            )
+          : <div
+          className="gray lg"
+          style={{
+            width:"250px",
+            textAlign:"center"
+          }}
+        >
+          <img src={noItems} style={{borderRadius:"5%",width:"100%" }}/>
+          Sorry, We Dont Have Any Matching Data!
+          
+        </div>
+          }
           </div>
         </div>
         <div
