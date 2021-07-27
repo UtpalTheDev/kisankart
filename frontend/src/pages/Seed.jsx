@@ -14,9 +14,10 @@ export function Seed({
   }, []);
   return (
     <>
-      <div style={{padding:"0 0.3rem"}}>
-        <h3>Seeds</h3>
-        <img src={seed_banner}  className="productpage_banner"/>
+     <h3>Seeds</h3>
+      <div className="productpage_banner">
+        
+        <img src={seed_banner}  className="productpage_banner_img"/>
         </div>
       <Products
         filteredData={filteredData}

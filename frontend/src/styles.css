@@ -3,8 +3,15 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined";
 
+#root{
+  display:flex;
+  
+  justify-content:center;
+}
 .App {
   min-height: 100vh;
+  width:100%;
+  max-width:1511px
 }
 .loader {
   position: fixed;
@@ -17,6 +24,7 @@
   width: 100vw;
   height: 100vh;
 }
+/*------------------navbar----------------*/
 .logo {
   width: 100px;
   align-self: flex-start;
@@ -39,6 +47,8 @@ a {
 .ecom-navbar {
   display: flex;
   justify-content: space-between;
+  background:white;
+  z-index:10
 }
 .ecom-navbar > .actions {
   display: flex;
@@ -48,6 +58,7 @@ a {
   top: 0;
 }
 /*------------product------*/
+
 .productgrid {
   display: grid;
   grid-template-areas: "action items";
@@ -281,6 +292,7 @@ a {
   margin: 0;
   padding: 0;
 }
+/*------------------cart--------------*/
 .checkout {
   position: fixed;
   bottom: 0rem;
@@ -288,10 +300,12 @@ a {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  height: 2.5rem;
+  padding:0.3rem 0;
 }
 .checkout > div {
-  height: 2.5rem;
+  margin:0 0.3rem
 }
 .checkout button {
   margin: 0 0.5rem 0 0;
@@ -299,9 +313,16 @@ a {
 
 /*-----------------------product page-----------------*/
 .productpage_banner{
+ display:flex;
+ justify-content:center;
+ padding:0 1rem
+}
+.productpage_banner_img{
   width:100%; 
   height:350px;
   border-radius: 1rem;
+  max-width:1500px;
+  
 }
 .productpage-wrapper {
   display: flex;
@@ -548,7 +569,7 @@ a {
   .productpage-image img {
     max-width: 210px;
   }
-  .productpage_banner{
+  .productpage_banner_img{
     height:150px
   }
 }

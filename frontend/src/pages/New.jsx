@@ -14,9 +14,8 @@ export function New({
   }, []);
   return (
     <>
-      <div style={{padding:"0 0.3rem"}}>
-        <h3>Seeds</h3>
-        <img src={new_banner}  className="productpage_banner"/>
+      <div className="productpage_banner">
+        <img src={new_banner}  className="productpage_banner_img"/>
       </div>
       <Products
         filteredData={filteredData}

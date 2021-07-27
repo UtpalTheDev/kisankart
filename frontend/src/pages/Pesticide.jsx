@@ -12,9 +12,10 @@ export function Pesticide({
   }, []);
   return (
     <>
-    <div style={{padding:"0 0.3rem"}}>
-        <h3>Pesticides</h3>
-        <img src="https://verityconsult.com.au/wp-content/uploads/2019/01/Pest-Control-Banner.jpg"  className="productpage_banner"/></div>
+     <h3>Pesticides</h3>
+    <div className="productpage_banner">
+       
+        <img src="https://verityconsult.com.au/wp-content/uploads/2019/01/Pest-Control-Banner.jpg"  className="productpage_banner_img"/></div>
       <Products
         filteredData={filteredData}
       />

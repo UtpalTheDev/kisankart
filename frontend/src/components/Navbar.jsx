@@ -4,7 +4,7 @@ import kisankartlogo from "../assets/kisankartlogo.png";
 export function Navbar({cartlist,wishlist}){
 
     return(
-        <div className="ecom-navbar">
+        <div className="ecom-navbar navbar-stick">
         <Link to="/">
           <div className="logo">
             <img src={kisankartlogo} alt="logo" />
