@@ -92,7 +92,9 @@ export function Wishlist() {
             >
               <img src={emptyList} style={{borderRadius:"5%",width:"100%" }}/>
               Wishlist Is Empty, Move to
-            <Link to="/" style={{color:"blue"}}> Home Page</Link>
+            <Link to="/" style={{color:"blue"}}>
+            <button className="primary-button md">Home </button>
+            </Link>
             </div>
       }
     </>

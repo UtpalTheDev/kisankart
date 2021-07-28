@@ -2,11 +2,12 @@ import { useParams } from "react-router-dom";
 import { useReduce } from "../Reducer-context/Reducer-context";
 import { useLogin } from "../Reducer-context/LoginContext";
 import { Link, useNavigate,useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { Add_to_cart_button, Add_to_wishlist_button } from "../components";
 export function ProductPage() {
   const { productid } = useParams();
   const { data,dispatch,cartlist, wishlist } = useReduce();
+  const [similarItems, setSimilarItems] = useState([])
   let navigate = useNavigate();
   const {pathname}=useLocation();
   const {isUserLogIn}=useLogin()
@@ -16,7 +17,20 @@ export function ProductPage() {
   }
   useEffect(() => {
     productobj === undefined && navigate("/*", { replace: true });
+   
   }, []);
+  useEffect(()=>{
+    setSimilarItems(()=>{return data.length>0 ? data
+      .filter(
+        (item) =>
+          item.idealFor === productobj.idealFor &&
+          item._id !== productobj._id
+      )
+      : []
+    
+    }
+      )
+  })
   return (
     <>
       {data.length > 0 && productobj !== undefined && (
@@ -63,14 +77,10 @@ export function ProductPage() {
           </div>
 
           <div className="productpage-similar">
-            <div className="productpage-similar-header">Similar Items</div>
+            <div className="productpage-similar-header">{similarItems.length>0 ? "Similar Items" : ""}</div>
             <div className="productpage-similar-items">
-              {data
-                .filter(
-                  (item) =>
-                    item.idealFor === productobj.idealFor &&
-                    item._id !== productobj._id
-                )
+              {similarItems.length>0 && 
+                similarItems
                 .map(
                   ({
                     _id,

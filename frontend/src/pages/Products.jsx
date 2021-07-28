@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useReduce } from "../Reducer-context/Reducer-context";
 import { useLogin } from "../Reducer-context/LoginContext";
 import { Filter, Sort } from "../components";
+import noItems from "../assets/noItem.svg";
 import { Link,useNavigate,useLocation } from "react-router-dom";
 import { Add_to_cart_button,Add_to_wishlist_button } from "../components";
 
@@ -67,6 +68,18 @@ export function Products({
                 />
                 <label htmlFor="PRICE_LOW_TO_HIGH">Price low to high</label>
               </li>
+              <li>
+                <input
+                  type="radio"
+                  name="sort1"
+                  id="Relevance"
+                  checked={sortBy === null}
+                  onChange={() => {
+                    dispatch({ type: "SORT", payload: null });
+                  }}
+                />
+                <label htmlFor="Relevance">Relevance</label>
+              </li>
             </ul>
             Filter
             <ul className="list ">
@@ -105,10 +118,13 @@ export function Products({
                 />
                 {`Rs:${range}`}
               </li>
+              <li>
+                <button className="primary-button md" style={{marginLeft:"0"}} onClick={()=>{dispatch({type:"RESET_FILTER"}); setrange(12000)}}>Clear Filter</button>
+              </li>
             </ul>
           </div>
-          <div className="items">
-            {rangefilteredData.map(
+          <div className="items" style={{position:"relative"}}>
+            {rangefilteredData.length>0 ? rangefilteredData.map(
               ({
                 _id,
                 name,
@@ -159,7 +175,22 @@ export function Products({
                   </div>
                 </Link>
               )
-            )}
+            )
+          : <div
+          className="gray lg"
+          style={{
+            width:"250px",
+            textAlign:"center"
+          }}
+        >
+          <img src={noItems} style={{borderRadius:"5%",width:"100%" }}/>
+          Sorry, We Dont Have Any Matching Data!
+          <button className="primary-button md"
+          onClick={()=>{dispatch({type:"RESET_FILTER"}); setrange(12000)}}
+          >
+            Clear Filter</button>
+        </div>
+          }
           </div>
         </div>
         <div

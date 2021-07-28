@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { loadStripe } from "@stripe/stripe-js";
 import styles from './Payment.module.css'
 
@@ -8,7 +8,8 @@ import {
   useElements,
   useStripe
 } from "@stripe/react-stripe-js";
-
+import { cart_empty_call } from '../api/ServerRequest';
+import { useReduce } from '../Reducer-context/Reducer-context';
 const CARD_OPTIONS = {
   iconStyle: "solid",
   style: {
@@ -114,7 +115,7 @@ const CheckoutForm = ({price,setModal}) => {
     phone: "",
     name: ""
   });
-
+  const {dispatch}=useReduce()
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -158,6 +159,12 @@ const CheckoutForm = ({price,setModal}) => {
       name: ""
     });
   };
+  useEffect(()=>{
+    if(paymentMethod){
+      setTimeout(()=>{ cart_empty_call("https://kisankartbackend.herokuapp.com/cart/empty",dispatch)},1000)
+     
+    }
+  },[paymentMethod])
 
   return paymentMethod ? (
     <div className={styles.Result}>

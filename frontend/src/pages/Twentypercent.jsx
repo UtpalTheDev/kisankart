@@ -14,8 +14,8 @@ export function Twentypercent({
   }, []);
   return (
     <>
-      <div style={{padding:"0 0.3rem"}}>
-        <img src={offer_20}  className="productpage_banner"/>
+      <div className="productpage_banner">
+        <img src={offer_20}  className="productpage_banner_img"/>
       </div>
       <Products
         filteredData={filteredData}

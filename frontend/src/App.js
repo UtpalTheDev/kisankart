@@ -44,14 +44,12 @@ export default function App() {
     showDiscount,
     showNew,
     cartlist,
-    route,
     wishlist,
-    dispatch,
     loading
   } = useReduce();
   function getSortedData(productlist, sortBy) {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
-      return productlist.sort((a, b) => b.price - a.price);
+      return [...productlist].sort((a, b) => b.price - a.price);
     }
     if (sortBy === "PRICE_LOW_TO_HIGH") {
       return [...productlist].sort((a, b) => a.price - b.price);

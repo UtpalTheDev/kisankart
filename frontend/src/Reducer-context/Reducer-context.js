@@ -189,7 +189,11 @@ export function reducer(state, action) {
           (item) => item.itemId !== action.payload
         )
       };
-
+    case "EMPTY_CARTLIST":
+      return{
+        ...state,
+        cartlist:[]
+      }
     case "ADD_WISH":
       return { ...state, wishlist: [...state.wishlist, action.payload] };
 
@@ -210,7 +214,16 @@ export function reducer(state, action) {
         ...state,
         wishlist: action.payload
       };
-
+    case "RESET_FILTER":
+      return {...state,
+        showInventoryAll: true,
+        showFastDeliveryOnly: false,
+        showMaterial: "All",
+        showIdealFor: "All",
+        showDiscount: 0,
+        showNew: false,
+        sortBy: null
+      }   
     case "RESET":
       return {
         ...state,

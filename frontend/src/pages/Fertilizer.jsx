@@ -14,9 +14,9 @@ export function Fertilizer({
   }, []);
   return (
     <>
-    <div style={{padding:"0 0.3rem"}}>
-        <h3>Fertilizers</h3>
-        <img src={fertilizer_banner}  className="productpage_banner"/></div>
+    <div style={{paddingLeft:"1rem"}}><h3>Fertilizers</h3></div>
+    <div className="productpage_banner">
+        <img src={fertilizer_banner}  className="productpage_banner_img"/></div>
       <Products
         filteredData={filteredData}
       />
