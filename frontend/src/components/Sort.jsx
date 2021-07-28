@@ -12,7 +12,7 @@ export function Sort({ setshowsort }) {
                 width: "100%",
                 textAlign: "center",
                 padding: "0.1rem 0",
-                background: sortBy === "PRICE_HIGH_TO_LOW" ? "lightgrey" : ""
+                background: sortBy === "PRICE_HIGH_TO_LOW" ? "#e2e2e2" : ""
               }}
               onClick={() => {
                 dispatch({ type: "SORT", payload: "PRICE_HIGH_TO_LOW" });
@@ -29,7 +29,7 @@ export function Sort({ setshowsort }) {
                 width: "100%",
                 textAlign: "center",
                 padding: "0.1rem 0",
-                background: sortBy === "PRICE_LOW_TO_HIGH" ? "lightgrey" : ""
+                background: sortBy === "PRICE_LOW_TO_HIGH" ? "#e2e2e2" : ""
               }}
               onClick={() => {
                 dispatch({ type: "SORT", payload: "PRICE_LOW_TO_HIGH" });
@@ -45,7 +45,7 @@ export function Sort({ setshowsort }) {
                 width: "100%",
                 textAlign: "center",
                 padding: "0.1rem 0",
-                background: sortBy === "null" ? "lightgrey" : ""
+                background: sortBy === null ? "#e2e2e2" : ""
               }}
               onClick={() => {
                 dispatch({ type: "SORT", payload: null });
