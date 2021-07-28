@@ -214,7 +214,16 @@ export function reducer(state, action) {
         ...state,
         wishlist: action.payload
       };
-
+    case "RESET_FILTER":
+      return {...state,
+        showInventoryAll: true,
+        showFastDeliveryOnly: false,
+        showMaterial: "All",
+        showIdealFor: "All",
+        showDiscount: 0,
+        showNew: false,
+        sortBy: null
+      }   
     case "RESET":
       return {
         ...state,

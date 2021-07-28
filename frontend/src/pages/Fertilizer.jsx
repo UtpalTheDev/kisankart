@@ -14,7 +14,7 @@ export function Fertilizer({
   }, []);
   return (
     <>
-    <h3>Fertilizers</h3>
+    <div style={{paddingLeft:"1rem"}}><h3>Fertilizers</h3></div>
     <div className="productpage_banner">
         <img src={fertilizer_banner}  className="productpage_banner_img"/></div>
       <Products

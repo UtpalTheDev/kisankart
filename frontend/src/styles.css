@@ -71,9 +71,9 @@ a {
   position: sticky;
   top: 0;
   height: max-content;
-  width: 15rem;
+  width: 21rem;
   padding-top: 20%;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 .items {
   grid-area: items;
@@ -199,7 +199,7 @@ a {
   z-index: 3;
   background: white;
 }
-.filterapply {
+.filter_button {
   position: absolute;
   bottom: 0;
   right: 0;

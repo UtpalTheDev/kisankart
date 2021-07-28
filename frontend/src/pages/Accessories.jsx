@@ -12,7 +12,7 @@ export function Accessories({
   }, []);
   return (
     <>
-      <h3>Accessories</h3>
+      <div style={{paddingLeft:"1rem"}}><h3>Accessories</h3></div>
       <div className="productpage_banner">
         
         <img src="https://thumbs.dreamstime.com/b/gardening-background-garden-hand-tools-summer-flowers-plant-gray-stone-background-top-view-place-text-banner-67778756.jpg"  className="productpage_banner_img"/>

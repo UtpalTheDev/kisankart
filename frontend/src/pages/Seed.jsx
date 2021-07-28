@@ -14,7 +14,7 @@ export function Seed({
   }, []);
   return (
     <>
-     <h3>Seeds</h3>
+     <div style={{paddingLeft:"1rem"}}><h3>Seeds</h3></div>
       <div className="productpage_banner">
         
         <img src={seed_banner}  className="productpage_banner_img"/>

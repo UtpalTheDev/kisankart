@@ -68,6 +68,18 @@ export function Products({
                 />
                 <label htmlFor="PRICE_LOW_TO_HIGH">Price low to high</label>
               </li>
+              <li>
+                <input
+                  type="radio"
+                  name="sort1"
+                  id="Relevance"
+                  checked={sortBy === null}
+                  onChange={() => {
+                    dispatch({ type: "SORT", payload: null });
+                  }}
+                />
+                <label htmlFor="Relevance">Relevance</label>
+              </li>
             </ul>
             Filter
             <ul className="list ">
@@ -105,6 +117,9 @@ export function Products({
                   }
                 />
                 {`Rs:${range}`}
+              </li>
+              <li>
+                <button className="primary-button md" style={{marginLeft:"0"}} onClick={()=>{dispatch({type:"RESET_FILTER"}); setrange(12000)}}>Clear Filter</button>
               </li>
             </ul>
           </div>
@@ -170,7 +185,10 @@ export function Products({
         >
           <img src={noItems} style={{borderRadius:"5%",width:"100%" }}/>
           Sorry, We Dont Have Any Matching Data!
-          
+          <button className="primary-button md"
+          onClick={()=>{dispatch({type:"RESET_FILTER"}); setrange(12000)}}
+          >
+            Clear Filter</button>
         </div>
           }
           </div>

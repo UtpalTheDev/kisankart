@@ -3,7 +3,7 @@ import { useReduce } from "../Reducer-context/Reducer-context";
 export function Filter({ setshowfilter, range, setrange }) {
   let { showInventoryAll, showFastDeliveryOnly, dispatch } = useReduce();
   return (
-    <>
+    <div style={{paddingTop:"2rem"}}>
       <ul className="list filterlist">
         <li>
           <input
@@ -40,13 +40,22 @@ export function Filter({ setshowfilter, range, setrange }) {
           />
           {`Rs${range}`}
         </li>
+        <div className="filter_button">
         <button
-          className="primary-button lg filterapply"
+          className="primary-button lg "
           onClick={() => setshowfilter((prev) => !prev)}
         >
-          Apply
+          Back
         </button>
+        <button
+          className="primary-button lg "
+          onClick={() => {dispatch({type:"RESET_FILTER"}); setrange(12000)}}
+        >
+          Clear Filter
+        </button>
+        </div>
+
       </ul>
-    </>
+    </div>
   );
 }
