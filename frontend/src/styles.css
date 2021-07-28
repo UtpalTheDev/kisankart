@@ -425,9 +425,8 @@ a {
 .productpage-similar-header {
   font-size: 20px;
   font-weight: 500;
-  letter-spacing: 1px;
   margin-bottom: 1rem;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 .productpage-similar-items {
   display: flex;
