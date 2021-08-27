@@ -22,7 +22,7 @@ export function Add_to_cart_button(id, inStock,cartlist,dispatch,isUserLogIn,nav
                     if (isUserLogIn) {
                       if (item.qty === 1) {
                         let cartmsg = await cart_remove_call(
-                          "https://kisankartbackend.herokuapp.com/cart",
+                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
                           { itemId: id },
                           dispatch
                         );
@@ -30,7 +30,7 @@ export function Add_to_cart_button(id, inStock,cartlist,dispatch,isUserLogIn,nav
                         notify();
                       } else {
                         let cartmsg = await cart_decrease_call(
-                          "https://kisankartbackend.herokuapp.com/cart",
+                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
                           {
                             items: { itemId: id, qty: item.qty - 1 }
                           },
@@ -53,7 +53,7 @@ export function Add_to_cart_button(id, inStock,cartlist,dispatch,isUserLogIn,nav
                     event.preventDefault();
                     if (isUserLogIn) {
                       let cartmsg = await cart_increase_call(
-                        "https://kisankartbackend.herokuapp.com/cart",
+                        "https://ecomm-demo-1.utpalpati.repl.co/cart",
                         {
                           items: { itemId: id, qty: item.qty + 1 }
                         },
@@ -84,7 +84,7 @@ export function Add_to_cart_button(id, inStock,cartlist,dispatch,isUserLogIn,nav
           event.preventDefault();
           if (isUserLogIn) {
             let cartmsg = await cart_add_call(
-              "https://kisankartbackend.herokuapp.com/cart",
+              "https://ecomm-demo-1.utpalpati.repl.co/cart",
               {
                 items: { itemId: id, qty: 1 }
               },

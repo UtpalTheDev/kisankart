@@ -49,18 +49,18 @@ export function ReducerProvider({ children }) {
       try {
         dispatch({ type: "LOAD", payload: true });
         const { data } = await axios.get(
-          "https://kisankartbackend.herokuapp.com/product"
+          "https://ecomm-demo-1.utpalpati.repl.co/product"
         );
 
         if (isUserLogIn) {
           dispatch({ type: "LOAD", payload: true });
 
           const cart = await axios.get(
-            "https://kisankartbackend.herokuapp.com/cart"
+            "https://ecomm-demo-1.utpalpati.repl.co/cart"
           );
 
           const wishlist = await axios.get(
-            "https://kisankartbackend.herokuapp.com/wishlist"
+            "https://ecomm-demo-1.utpalpati.repl.co/wishlist"
           );
 
           dispatch({

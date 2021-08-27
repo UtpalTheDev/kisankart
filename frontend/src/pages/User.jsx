@@ -12,7 +12,7 @@ export function User() {
       try {
         dispatch({ type: "LOAD", payload: true });
         let response = await axios.get(
-          "https://kisankartbackend.herokuapp.com/user"
+          "https://ecomm-demo-1.utpalpati.repl.co/user"
         );
         dispatch({ type: "USER", payload: response.data });
         dispatch({ type: "LOAD", payload: false });

@@ -38,7 +38,7 @@ export function LoginProvider({ children }) {
   async function LoginWithCredentials(email, password) {
     try {
       let response = await axios.post(
-        "https://kisankartbackend.herokuapp.com/login",
+        "https://ecomm-demo-1.utpalpati.repl.co/login",
         { user: { email, password } }
       );
 

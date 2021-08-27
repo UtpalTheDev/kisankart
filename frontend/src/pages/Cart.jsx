@@ -82,7 +82,7 @@ export function Cart() {
                       onClick={async (event) => {
                         event.preventDefault();
                         let cartmsg = await cart_remove_call(
-                          "https://kisankartbackend.herokuapp.com/cart",
+                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
                           {
                             itemId: item._id
                           },

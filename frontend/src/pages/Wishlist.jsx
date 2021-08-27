@@ -60,7 +60,7 @@ export function Wishlist() {
                     onClick={async (event) => {
                       event.preventDefault();
                       let wishlistmsg = await wishlist_remove_call(
-                        "https://kisankartbackend.herokuapp.com/wishlist",
+                        "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
                         { itemId: item._id },
                         dispatch
                       );

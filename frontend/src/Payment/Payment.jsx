@@ -161,7 +161,7 @@ const CheckoutForm = ({price,setModal}) => {
   };
   useEffect(()=>{
     if(paymentMethod){
-      setTimeout(()=>{ cart_empty_call("https://kisankartbackend.herokuapp.com/cart/empty",dispatch)},1000)
+      setTimeout(()=>{ cart_empty_call("https://ecomm-demo-1.utpalpati.repl.co/cart/empty",dispatch)},1000)
      
     }
   },[paymentMethod])
