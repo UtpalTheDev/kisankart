@@ -25,7 +25,7 @@ export function Signup() {
     try {
       dispatch({ type: "LOAD", payload: true });
       let response = await axios.post(
-        "https://ecomm-demo-1.utpalpati.repl.co/signup",
+        `${process.env.REACT_APP_backend_url}/signup`,
         { user: { userName, email, password } }
       );
       if (response.status === 200) {

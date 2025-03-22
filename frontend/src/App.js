@@ -1,12 +1,12 @@
 import React from "react";
-import Loader from "react-loader-spinner";
+import {BallTriangle} from "react-loader-spinner";
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles.css";
 import { useReduce } from "./Reducer-context/Reducer-context";
 import {
   Route,
-  Routes
+  Routes,BrowserRouter as Router
 } from "react-router-dom";
 import { Navbar } from "./components";
 import PrivateRoute from "./PrivateRoute";
@@ -30,7 +30,6 @@ import {
   NotFound,
   Cart
 } from "./pages";
-
 /*---------------------APP------------------------------*/
 
 export default function App() {
@@ -56,7 +55,6 @@ export default function App() {
     }
     return productlist;
   }
-
   function getfilteredData(
     productlist,
     {
@@ -95,7 +93,6 @@ export default function App() {
 
   return (
     <div className="App">
-      
       <Navbar cartlist={cartlist} wishlist={wishlist}/>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -144,20 +141,22 @@ export default function App() {
           path="/10"
           element={<Tenpercent filteredData={filteredData}/>}
         />
-        <PrivateRoute path="/cart" element={<Cart />}/>
-        <PrivateRoute path="/wishlist" element={<Wishlist />}/>
+
+      <Route element={<PrivateRoute />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/user" element={<User />} />
+        </Route>
+  
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <PrivateRoute path="/user" element={<User />} />
         <Route
           path="/product/:productid" element={<ProductPage/>}/>
-
         <Route path="*" element={<NotFound />} />
       </Routes>
-
       {loading && (
         <div className="loader">
-          <Loader
+          <BallTriangle
             type="BallTriangle"
             color="green"
             height={100}

@@ -15,7 +15,7 @@ export function Pesticide({
      <div style={{paddingLeft:"1rem"}}><h3>Pesticides</h3></div>
     <div className="productpage_banner">
        
-        <img src="https://verityconsult.com.au/wp-content/uploads/2019/01/Pest-Control-Banner.jpg"  className="productpage_banner_img"/></div>
+        <img src="https://res.cloudinary.com/patiutpal/image/upload/v1741189114/kisankart/pesticides-banner_hp9ig1.png"  className="productpage_banner_img"/></div>
       <Products
         filteredData={filteredData}
       />

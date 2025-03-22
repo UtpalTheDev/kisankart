@@ -23,7 +23,7 @@ export function Add_to_wishlist_button(id,wishlist,dispatch,isUserLogIn,navigate
                   event.preventDefault();
                   if (isUserLogIn) {
                     let wishlistmsg = await wishlist_remove_call(
-                      "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+                      `${process.env.REACT_APP_backend_url}/wishlist`,
                       { itemId: id },
                       dispatch
                     );
@@ -47,7 +47,7 @@ export function Add_to_wishlist_button(id,wishlist,dispatch,isUserLogIn,navigate
           event.preventDefault();
           if (isUserLogIn) {
             let wishlistmsg = await wishlist_add_call(
-              "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+              `${process.env.REACT_APP_backend_url}/wishlist`,
               {
                 itemId: id
               },

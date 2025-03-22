@@ -161,7 +161,7 @@ const CheckoutForm = ({price,setModal}) => {
   };
   useEffect(()=>{
     if(paymentMethod){
-      setTimeout(()=>{ cart_empty_call("https://ecomm-demo-1.utpalpati.repl.co/cart/empty",dispatch)},1000)
+      setTimeout(()=>{ cart_empty_call(`${process.env.REACT_APP_backend_url}/cart/empty`,dispatch)},1000)
      
     }
   },[paymentMethod])
@@ -244,7 +244,7 @@ const ELEMENTS_OPTIONS = {
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+const stripePromise = loadStripe('pk_test_51JFZI7SERJtwiYIjUkgfUefbLbmi5RRfNHUFOBnGXmE4I94cr7X1SU1YWx2XC2hnRUJsEpsehFFhJmGikChUWZHh0028hh6ag0');
 
 
 export const Payment = ({price,setModal}) => {

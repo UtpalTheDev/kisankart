@@ -105,7 +105,7 @@ export function ProductPage() {
                               <img
                                 className="cards-t1-img"
                                 src={image}
-                                alt={name}
+                                alt={name} width={150} height={200}
                               />
                               <div className="rate">
                                 {ratings}

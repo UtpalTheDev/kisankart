@@ -34,7 +34,7 @@ export function Wishlist() {
                 style={{ width: "40%", maxWidth: "210px" }}
               >
                 <div className="cards-t1">
-                  <img className="cards-t1-img" src={item.image} alt={item.name} />
+                  <img className="cards-t1-img" src={item.image} alt={item.name} width={150} height={200} />
 
                   <div
                     className="title"
@@ -60,7 +60,7 @@ export function Wishlist() {
                     onClick={async (event) => {
                       event.preventDefault();
                       let wishlistmsg = await wishlist_remove_call(
-                        "https://ecomm-demo-1.utpalpati.repl.co/wishlist",
+                        `${process.env.REACT_APP_backend_url}/wishlist`,
                         { itemId: item._id },
                         dispatch
                       );

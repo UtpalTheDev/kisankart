@@ -9,7 +9,7 @@ export function Home() {
           <div>
             <div className="round-img">
               <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.jj12xIqw1qxhI1oxVJo1CAHaHa%26pid%3DApi&f=1"
+                src="https://res.cloudinary.com/patiutpal/image/upload/v1741189112/kisankart/seeds_aqlinc.png"
                 alt="seeds"
               />
             </div>
@@ -21,7 +21,7 @@ export function Home() {
           <div>
             <div className="round-img">
               <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.BVTE833H8QNL4ITF_duqqAAAAA%26pid%3DApi&f=1"
+                src="https://res.cloudinary.com/patiutpal/image/upload/v1741189084/kisankart/fertilizers_k2qecl.png"
                 alt="fertilizers"
               />
             </div>
@@ -34,7 +34,7 @@ export function Home() {
             {" "}
             <div className="round-img">
               <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Q7zt0mC6Djg3KRkAtEhqIAHaHa%26pid%3DApi&f=1"
+                src="https://res.cloudinary.com/patiutpal/image/upload/v1741189111/kisankart/pesticides_nfmjii.png"
                 alt="pesticides"
               />
             </div>
@@ -48,7 +48,7 @@ export function Home() {
             {" "}
             <div className="round-img">
               <img
-                src="http://3.bp.blogspot.com/-fqclgZepv6E/VieyKaBK1fI/AAAAAAAAAHI/EJw2uVrDo4U/s1600/20981075-Gardening-tools-isolated-on-white-background-Garden-equipment-silhouette-set--Stock-Vector.jpg"
+                src="https://res.cloudinary.com/patiutpal/image/upload/v1741189112/kisankart/accesories_cs8lki.png"
                 alt="machinery"
               />
             </div>

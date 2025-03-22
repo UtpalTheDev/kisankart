@@ -49,18 +49,18 @@ export function ReducerProvider({ children }) {
       try {
         dispatch({ type: "LOAD", payload: true });
         const { data } = await axios.get(
-          "https://ecomm-demo-1.utpalpati.repl.co/product"
+          `${process.env.REACT_APP_backend_url}/product`
         );
 
         if (isUserLogIn) {
           dispatch({ type: "LOAD", payload: true });
 
           const cart = await axios.get(
-            "https://ecomm-demo-1.utpalpati.repl.co/cart"
+            `${process.env.REACT_APP_backend_url}/cart`
           );
 
           const wishlist = await axios.get(
-            "https://ecomm-demo-1.utpalpati.repl.co/wishlist"
+            `${process.env.REACT_APP_backend_url}/wishlist`
           );
 
           dispatch({

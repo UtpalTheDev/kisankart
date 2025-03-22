@@ -143,7 +143,7 @@ export function Products({
                 >
                   <div className="cards-t1">
                     <div className="ratewrapper">
-                      <img className="cards-t1-img" src={image} alt={name} />
+                      <img className="cards-t1-img" src={image} alt={name} width={150} height={200} />
                       <div className="rate">
                         {ratings}
                         <i className="fa fa-star"></i>

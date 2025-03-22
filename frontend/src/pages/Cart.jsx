@@ -51,6 +51,8 @@ export function Cart() {
                       className="cards-t1-img"
                       src={item.image}
                       alt={item.name}
+                      width={150}
+                      height={200}
                     />
 
                     <div
@@ -82,7 +84,7 @@ export function Cart() {
                       onClick={async (event) => {
                         event.preventDefault();
                         let cartmsg = await cart_remove_call(
-                          "https://ecomm-demo-1.utpalpati.repl.co/cart",
+                          `${process.env.REACT_APP_backend_url}/cart`,
                           {
                             itemId: item._id
                           },
